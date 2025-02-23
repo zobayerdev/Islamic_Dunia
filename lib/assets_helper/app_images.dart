@@ -9,4 +9,6 @@ class AppImages {
   static const String searchImage = '$imageRoute/searchs_new.png';
   static const String iconImage = '$imageRoute/icon.png';
 
+  // navigation bar images
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_dunia/navigation_screen.dart';
 import 'constants/app_constants.dart';
 
 import 'helpers/di.dart';
@@ -47,8 +48,8 @@ class _LoadingState extends State<Loading> {
       return appData.read(kKeyIsLoggedIn)
           ? WelcomeScreen()
           : appData.read(kKeyfirstTime)
-              ? WelcomeScreen() //AuthRuleScreen()
-              : WelcomeScreen();
+              ? NavigationScreen() //AuthRuleScreen()
+              : NavigationScreen();
     }
     /* return TimeAppointmentScreen();
 
