@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<colors>
+// Moises
+
+<color name="c848484">#FF848484</color>
+<color name="c141414">#FF141414</color>
+<color name="cC2C2C2">#FFC2C2C2</color>
+<color name="secondaryColor">#FFFFB75A</color> 
+<color name="primaruDarki">#FF02BF65</color>
+<color name="gradiant2">#FF955EF9</color>
+<color name="disableColour">#FFE0EDFF</color>
+<color name="boxShadow">#FF0D6BF8</color>
+<color name="c3D4040">#FF3D4040</color>
+<color name="c97A0AF">#FF97A0AF</color>
+<color name="cD1D5DC">#FFD1D5DC</color>
+<color name="cB3BAC5">#FFB3BAC5</color>
+<color name="c1A1A1A">#FF1A1A1A</color>
+<color name="cFFFFFF">#FFFFFFFF</color>
+<color name="c000000">#FF000000</color>
+<color name="c8993A4">#FF8993A4</color>
+<color name="cB3B3B3">#FFB3B3B3</color>
+<color name="c292E34">#FF292E34</color>
+<color name="c54585C">#FF54585C</color>
+<color name="c919293">#FF919293</color>
+<color name="cEBEBEB">#FFEBEBEB</color>
+<color name="c394456">#FF394456</color>
+<color name="cD2D2D2">#FFD2D2D2</color>
+<color name="c02BF65">#FF02BF65</color>
+<color name="c1F1F1F">#FF1F1F1F</color>
+<color name="cFF2368">#FFFF2368</color>
+<color name="cFBC42E">#FFFBC42E</color>
+<color name="cFFE7EE">#FFFFE7EE</color>
+<color name="cEFF3F8">#FFEFF3F8</color>
+<color name="cFFF5DA">#FFFFF5DA</color>
+<color name="cE0EDFF">#FFE0EDFF</color>
+<color name="c36AD2F">#FF36AD2F</color>
+<color name="c02BF65">#FF02BF65</color>
+<color name="cFEFEFE">#FFFEFEFE</color>
+<color name="c152889">#FF152889</color>
+<color name="cFF755F">#FFFF755F</color>
+<color name="c141414">#FF141414</color>
+<color name="c333333">#FF333333</color>
+<color name="c838383">#FF838383</color>
+<color name="cCDE1F9">#FFCDE1F9</color>
+<color name="c818181">#FF818181</color>
+<color name="c000031">#FF000031</color>
+<color name="c8E8E93">#FF8E8E93</color>
+<color name="cC2C2C2">#FFC2C2C2</color>
+<color name="cF2F2F7">#FFF2F2F7</color>
+<color name="cEDEDED">#FFEDEDED</color>
+
+<color name="c1A1D1F">#FF1A1D1F</color>
+<color name="cFBFBFB">#FFFBFBFB</color>
+<color name="c9A9FA5">#FF9A9FA5</color>
+<color name="cD9D9EE">#FFD9D9EE</color>
+<color name="cE7EFEE">#FFE7EFEE</color>
+<color name="cEBECEF">#FFEBECEF</color>
+<color name="c3A86FF">#FF3A86FF</color>
+<color name="cE4E3E3">#FFE4E3E3</color>
+<color name="cFAFAFA">#FFFAFAFA</color>
+<color name="cf0ecfa">#FFf0ecfa</color>
+
+
+
+
+<color name="c000031">#FF000031</color>
+<color name="c050505">#FF050505</color>
+<color name="c333333">#FF333333</color>
+<color name="c5A5C5F">#FF5A5C5F</color>
+<color name="c838383">#FF838383</color>
+<color name="c070707">#FF070707</color>
+<color name="cA0A0A0">#FFA0A0A0</color>
+<color name="c171717">#FF171717</color>
+<color name="cF02F2F">#FFF02F2F</color>
+<color name="c909090">#FF909090</color>
+<color name="c1E1E1E">#FF1E1E1E</color>
+<color name="c0A5B55">#FF0A5B55</color>
+<color name="cA8A8A8">#FFA8A8A8</color>
+<color name="cCFCFCF">#FFCFCFCF</color>
+<color name="cE8E8E8">#FFE8E8E8</color>
+<color name="c6F767E">#FF6F767E</color>
+<color name="cFEE6E6">#FFFEE6E6</color>
+<color name="cA80202">#FFA80202</color>
+<color name="c7D12FF">#FF7D12FF</color>
+<color name="c36B37E">#FF36B37E</color>
+<color name="cB5B5B5">#FFB5B5B5</color>
+
+
+<!-- noeldapile -->
+<color name="allPrimaryColor">#FF6940C9</color>
+<color name="c6940C9">#FF6940C9</color>
+<color name="cFFFFFF">#FFFFFFFF</color>
+<color name="cE9EAEC">#FFE9EAEC</color>
+<color name="cE9EAEC">#FFE9EAEC</color>
+<color name="c333333">#FF333333</color>
+<color name="c767676">FF767676</color>
+<color name="cA1A1A1">FFA1A1A1</color>
+<color name="c05164D">FF05164D</color>
+<color name="cD7443E">FFD7443E</color>
+<color name="c8C8C8C">FF8C8C8C</color>
+<color name="cFFAD00">FFFFAD00</color>
+<color name="cF0ECFA">FFF0ECFA</color>
+<color name="c36B37E">FF36B37E</color>
+<color name="cE8ECEC">FFE8ECEC</color>
+<color name="cFAFAFA">FFFAFAFA</color>
+<!-- ##################################### -->
+
+
+
+old
+  <color name="cFEFFFE">#FF071112</color>
+  <color name="cDFDFDF">#FFDFDFDF</color>
+  <color name="c47B54C">#FF47B54C</color>
+  <color name="c0A0909">#FF0A0909</color>
+ 
+  <color name="cF4F4F4">#FFF4F4F4</color>
+ 
+  <color name="c231F20">#FF231F20</color>
+  <color name="cEB001B">#FFEB001B</color>
+  <color name="cF79E1B">#FFF79E1B</color>
+  <color name="cFF5F00">#FFFF5F00</color>
+  <color name="c0B0A0A">#FF0B0A0A</color>
+  <color name="cABABAB">#FFABABAB</color>
+  <color name="cF45310">#FFF45310</color>
+  <color name="cCACACA">#FFCACACA</color>
+  <color name="cFFC6AE">#FFFFC6AE</color>
+  <color name="c969696">#FF969696</color>
+  <color name="cC9C9C9">#FFC9C9C9</color>
+  <color name="cEEEEEE">#FFEEEEEE</color>
+  <color name="cF0F0F0">#FFF0F0F0</color>
+  <color name="cFF0000">#FFFF0000</color>
+  <color name="c7F7E7E">#FF7F7E7E</color>
+  <color name="c212121">#FF212121</color>
+  <color name="cEDBB43">#FFEDBB43</color>
+  <color name="c2C303E">#FF2C303E</color>
+  <color name="c9B9B9B">#FF9B9B9B</color>
+  <color name="cFF9500A">#FFF9500A</color>
+  <color name="cFD9D9D9">#FFD9D9D9</color>
+  <color name="scaffoldColor">#FF071112</color>
+
+  <color name="activeColor">#FF326144</color>
+  <color name="debitHigheColor">#FFB7242A</color>
+  <color name="inactiveColor">#FFEDBB43</color>
+  <color name="linkColor">#FFF0E0C1</color>
+  <color name="loginBackground">#FFF4D68E</color>
+  <color name="warningColor">#FFB7242A</color>
+  <color name="ratingColor">#FFE65934</color>
+  <color name="bgColor">#FFFBFBFB</color>
+  <color name="headLine1Color">#FF4A4A4A</color>
+  <color name="headLine2Color">#FF131313</color>
+  <color name="disabledColor">#FF9B9B9B</color>
+  <color name="unselectedButtonTextColor">#FF2C303E</color>
+  <color name="creditHighliteColor">#FF709B72</color>
+  <color name="penIconColor">#FF00A7FF</color>
+  <color name="alertButtonColor">#FFFEFFFB</color>
+  <color name="white">#FFFFFFFF</color>
+  <color name="borderColor">#FFDDDDDD</color>
+  <color name="secondaryColor">#FF444242</color>
+  <color name="shadowText">#FFF1F2F7</color>
+  <color name="shadowText2">#FFB0B0B0</color>
+
+</colors>
