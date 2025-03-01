@@ -34,7 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<StatefulWidget> _screens = [
     HomeScreen(),
     ExploreScreen(),
-    QiblaScreen(),
+    QiblaCompassScreen(),
     ChatScreen(),
     SettingScreen()
   ];
@@ -98,7 +98,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               ),
               title: Text(
                 "${"Home"} ",
-                style: TextFontStyle.textStyle14w400Poppins.copyWith(
+                style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 0)
                       ? AppColors.primaryColor
                       : AppColors.cA0A0A0,
