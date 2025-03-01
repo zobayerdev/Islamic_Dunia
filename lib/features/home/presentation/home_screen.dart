@@ -1,8 +1,17 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
+import 'package:islamic_dunia/assets_helper/app_lottie.dart';
+import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
+import 'package:islamic_dunia/features/home/model/ramjan_time_model.dart';
+import 'package:islamic_dunia/networks/api_acess.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +21,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String currentTime = '';
+  late Timer _timer;
+
+  void getCurrentTime() {
+    final now = DateTime.now();
+    final formatter = DateFormat('hh:mm:ss a');
+    setState(() {
+      currentTime = formatter.format(now);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentTime();
+    getPrayerTimeRX.prayerTimeAPI();
+    getRamjanTimeRX.ramjanTimeAPI();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      getCurrentTime();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,24 +67,80 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "9 Ramadan 1442",
-                    style: TextFontStyle.textStyle13w500Poppins.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
-                  SizedBox(height: 3),
-                  Text(
-                    "Tuesday, 20 April 2024",
-                    style: TextFontStyle.smallStyle9w500Poppins.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.whiteColor,
-                    ),
+                  StreamBuilder<RamjanTimeModel>(
+                    stream: getRamjanTimeRX
+                        .dataFetcher, // Assuming this is your stream
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Lottie.asset(
+                          AppLottie.whiteLottie,
+                          height: 100,
+                          width: 100,
+                        );
+                      }
+                      if (snapshot.hasData) {
+                        RamjanTimeModel ramjanTimeModel = snapshot.data!;
+                        var time = ramjanTimeModel.data!;
+
+                        // Get today's date in "dd MMM yyyy" format (e.g., 02 Mar 2025)
+                        String todayDate =
+                            DateFormat('dd MMM yyyy').format(DateTime.now());
+
+                        // Filter data to get only today's date
+                        var todayData = time
+                            .where((datum) => datum.date == todayDate)
+                            .toList();
+
+                        if (todayData.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No data available for today.',
+                              style:
+                                  TextFontStyle.textStyle13w500Poppins.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          );
+                        }
+
+                        // Display today's data
+                        return Column(
+                          children: [
+                            Text(
+                              todayData[0].ramjanNo!.toString() +
+                                  " Ramadan" +
+                                  ", " +
+                                  "2025",
+                              style:
+                                  TextFontStyle.textStyle13w500Poppins.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                            SizedBox(height: 3),
+                            Text(
+                              todayData[0].dayName! + ", " + todayData[0].date!,
+                              style: TextFontStyle.smallStyle10w500Poppins
+                                  .copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Lottie.asset(
+                          AppLottie.whiteLottie,
+                          height: 80,
+                          width: 80,
+                        );
+                      }
+                    },
                   ),
                   SizedBox(height: 20),
                   Container(
-                    height: 250,
+                    height: 230,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: AppColors.whiteColor.withOpacity(0.2),
@@ -82,53 +176,71 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            "04:00 AM",
+                            currentTime,
                             style: TextFontStyle.headLine24w600Poppins.copyWith(
                               fontWeight: FontWeight.bold,
                               color: AppColors.whiteColor,
                             ),
                           ),
-                          Text(
-                            "Fajr 3 hours 9 mins left",
-                            style:
-                                TextFontStyle.smallStyle11w400Poppins.copyWith(
-                              color: AppColors.whiteColor,
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              PrayerTimeWidget(
-                                prayerName: "Fajr",
-                                time: "05:00 AM",
-                                icon: AppIcons.fajr,
-                              ),
-                              PrayerTimeWidget(
-                                prayerName: "Dhuhr",
-                                time: "12:00 PM",
-                                icon: AppIcons
-                                    .duhr, // Assuming you have an icon for Dhuhr
-                              ),
-                              PrayerTimeWidget(
-                                prayerName: "Asr",
-                                time: "03:30 PM",
-                                icon: AppIcons
-                                    .asr, // Assuming you have an icon for Asr
-                              ),
-                              PrayerTimeWidget(
-                                prayerName: "Maghrib",
-                                time: "06:00 PM",
-                                icon: AppIcons
-                                    .magrib, // Assuming you have an icon for Maghrib
-                              ),
-                              PrayerTimeWidget(
-                                prayerName: "Isha",
-                                time: "08:00 PM",
-                                icon: AppIcons
-                                    .isha, // Assuming you have an icon for Isha
-                              ),
-                            ],
+                          SizedBox(height: 10),
+                          StreamBuilder<PrayerTimeModel>(
+                            stream: getPrayerTimeRX.dataFetcher,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Lottie.asset(
+                                  AppLottie.whiteLottie,
+                                  height: 80,
+                                  width: 80,
+                                );
+                              }
+                              if (snapshot.hasData) {
+                                PrayerTimeModel prayerTimeModel =
+                                    snapshot.data!;
+                                var time = prayerTimeModel.items!;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    PrayerTimeWidget(
+                                      prayerName: "Fajr",
+                                      time: time[0].fajr!,
+                                      icon: AppIcons.fajr,
+                                    ),
+                                    PrayerTimeWidget(
+                                      prayerName: "Dhuhr",
+                                      time: time[0].dhuhr!,
+                                      icon: AppIcons
+                                          .duhr, // Assuming you have an icon for Dhuhr
+                                    ),
+                                    PrayerTimeWidget(
+                                      prayerName: "Asr",
+                                      time: time[0].asr!,
+                                      icon: AppIcons
+                                          .asr, // Assuming you have an icon for Asr
+                                    ),
+                                    PrayerTimeWidget(
+                                      prayerName: "Maghrib",
+                                      time: time[0].maghrib!,
+                                      icon: AppIcons
+                                          .magrib, // Assuming you have an icon for Maghrib
+                                    ),
+                                    PrayerTimeWidget(
+                                      prayerName: "Isha",
+                                      time: time[0].isha!,
+                                      icon: AppIcons
+                                          .isha, // Assuming you have an icon for Isha
+                                    ),
+                                  ],
+                                );
+                              } else {
+                                return Lottie.asset(
+                                  AppLottie.whiteLottie,
+                                  height: 80,
+                                  width: 80,
+                                );
+                              }
+                            },
                           ),
                         ],
                       ),

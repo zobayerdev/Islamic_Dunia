@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/features/chat/chat_screen.dart';
 import 'package:islamic_dunia/features/explore/explore_screen.dart';
-import 'package:islamic_dunia/features/home/home_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/home_screen.dart';
 import 'package:islamic_dunia/features/qibla/qibla_screen.dart';
 import 'package:islamic_dunia/features/setting/setting_screen.dart';
 

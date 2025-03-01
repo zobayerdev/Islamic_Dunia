@@ -51,11 +51,5 @@ class _LoadingState extends State<Loading> {
               ? NavigationScreen() //AuthRuleScreen()
               : NavigationScreen();
     }
-    /* return TimeAppointmentScreen();
-
-              ? HomeScreen()
-              : HomeScreen();
-    }
-    */
   }
 }
