@@ -16,8 +16,8 @@ class PrayerTimeModel {
   String? prayerTimeModelFor;
   int? method;
   String? prayerMethodName;
-  int? daylight;
-  int? timezone;
+  String? daylight;
+  String? timezone;
   String? mapImage;
   String? sealevel;
   TodayWeather? todayWeather;
@@ -166,7 +166,7 @@ class Item {
 }
 
 class TodayWeather {
-  int? pressure;
+  String? pressure;
   String? temperature;
 
   TodayWeather({

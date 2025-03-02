@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -184,7 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 10),
                           StreamBuilder<PrayerTimeModel>(
-                            stream: getPrayerTimeRX.dataFetcher,
+                            stream: getPrayerTimeRX
+                                .dataFetcher, // Assuming you have a stream
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -194,44 +193,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 80,
                                 );
                               }
+
                               if (snapshot.hasData) {
                                 PrayerTimeModel prayerTimeModel =
                                     snapshot.data!;
                                 var time = prayerTimeModel.items!;
+
                                 return Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     PrayerTimeWidget(
                                       prayerName: "Fajr",
-                                      time: time[0].fajr!,
+                                      time: time[0].fajr ?? 'No time available',
                                       icon: AppIcons.fajr,
                                     ),
                                     PrayerTimeWidget(
                                       prayerName: "Dhuhr",
-                                      time: time[0].dhuhr!,
-                                      icon: AppIcons
-                                          .duhr, // Assuming you have an icon for Dhuhr
+                                      time:
+                                          time[0].dhuhr ?? 'No time available',
+                                      icon: AppIcons.duhr,
                                     ),
                                     PrayerTimeWidget(
                                       prayerName: "Asr",
-                                      time: time[0].asr!,
-                                      icon: AppIcons
-                                          .asr, // Assuming you have an icon for Asr
+                                      time: time[0].asr ?? 'No time available',
+                                      icon: AppIcons.asr,
                                     ),
                                     PrayerTimeWidget(
                                       prayerName: "Maghrib",
-                                      time: time[0].maghrib!,
-                                      icon: AppIcons
-                                          .magrib, // Assuming you have an icon for Maghrib
+                                      time: time[0].maghrib ??
+                                          'No time available',
+                                      icon: AppIcons.magrib,
                                     ),
                                     PrayerTimeWidget(
                                       prayerName: "Isha",
-                                      time: time[0].isha!,
-                                      icon: AppIcons
-                                          .isha, // Assuming you have an icon for Isha
+                                      time: time[0].isha ?? 'No time available',
+                                      icon: AppIcons.isha,
                                     ),
                                   ],
+                                );
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Text('Error: ${snapshot.error}'),
                                 );
                               } else {
                                 return Lottie.asset(
@@ -470,6 +473,7 @@ class PrayerTimeWidget extends StatelessWidget {
               time,
               style: TextFontStyle.smallStyle11w400Poppins.copyWith(
                 color: AppColors.whiteColor,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
