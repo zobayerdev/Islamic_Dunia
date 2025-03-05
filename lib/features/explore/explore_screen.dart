@@ -27,7 +27,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             physics: BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: Center(
+              child: 
+              Center(
                 child: Column(
                   children: [
                     Text(

@@ -8,8 +8,11 @@ import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
 import 'package:islamic_dunia/features/home/model/ramjan_time_model.dart';
+import 'package:islamic_dunia/helpers/navigation_service.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../helpers/all_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -349,31 +352,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(width: 10),
                       Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  AppIcons.clock,
-                                  height: 22,
-                                  width: 22,
-                                  color: AppColors.primaryColor,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Prayer Time",
-                                  style: TextFontStyle.textStyle14w600Poppins
-                                      .copyWith(
+                        child: GestureDetector(
+                          onTap: () {
+                            NavigationService.navigateTo(
+                              Routes.prayerTimeScreen,
+                            );
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.clock,
+                                    height: 22,
+                                    width: 22,
                                     color: AppColors.primaryColor,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Prayer Time",
+                                    style: TextFontStyle.textStyle14w600Poppins
+                                        .copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

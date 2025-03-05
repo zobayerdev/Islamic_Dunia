@@ -52,6 +52,7 @@ dependencies:
   flutter_lints: ^2.0.0
   flutter_compass: ^0.8.1
   lottie: ^3.2.0
+  permission_handler: ^11.4.0
 
   # Using Graph
   # syncfusion_flutter_charts: ^27.1.57

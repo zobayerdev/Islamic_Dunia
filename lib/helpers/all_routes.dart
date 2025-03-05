@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -7,6 +10,7 @@ final class Routes {
 
   // ################## Auth User ##################
   static const String logInUserScreen = '/logInUserScreen';
+  static const String prayerTimeScreen = '/prayerTimeScreen';
 }
 
 final class RouteGenerator {
@@ -21,6 +25,12 @@ final class RouteGenerator {
       //       ? _FadedTransitionRoute(
       //           widget: LoginUserScreen(), settings: settings)
       //       : CupertinoPageRoute(builder: (context) => LoginUserScreen());
+
+      case Routes.prayerTimeScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: PrayerTimeScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => PrayerTimeScreen());
 
       default:
         return null;
