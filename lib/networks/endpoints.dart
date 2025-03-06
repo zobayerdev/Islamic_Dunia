@@ -24,6 +24,9 @@ final class Endpoints {
   //backend_url
   static String prayerTimeAPI() =>
       "https://muslimsalat.com//bangladesh/daily.json?key=b14e849e4c8659e734283102b44d0d2d";
+      
+  static String monthPrayerTimeAPI() =>
+      "https://muslimsalat.com/bangladesh/monthly.json?key=b14e849e4c8659e734283102b44d0d2d";
 
   static String ramjanTimeAPI() =>
       "https://www.zobayerdev.top/islamic_dunia/ramjan_time/read_timings.php";

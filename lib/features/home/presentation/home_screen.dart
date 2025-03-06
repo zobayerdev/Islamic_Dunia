@@ -236,8 +236,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 );
                               } else if (snapshot.hasError) {
-                                return Center(
-                                  child: Text('Error: ${snapshot.error}'),
+                                return Lottie.asset(
+                                  AppLottie.whiteLottie,
+                                  height: 80,
+                                  width: 80,
                                 );
                               } else {
                                 return Lottie.asset(
