@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
+import 'package:islamic_dunia/features/surah/presentatioon/details_surah_screen.dart';
+import 'package:islamic_dunia/features/surah/presentatioon/surah_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -11,6 +13,8 @@ final class Routes {
   // ################## Auth User ##################
   static const String logInUserScreen = '/logInUserScreen';
   static const String prayerTimeScreen = '/prayerTimeScreen';
+  static const String surahScreen = '/surahScreen';
+  static const String surahDetailsScreen = '/surahDetailsScreen';
 }
 
 final class RouteGenerator {
@@ -31,6 +35,25 @@ final class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: PrayerTimeScreen(), settings: settings)
             : CupertinoPageRoute(builder: (context) => PrayerTimeScreen());
+
+      case Routes.surahScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(widget: SsurahScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => SsurahScreen());
+
+      case Routes.surahDetailsScreen:
+        final Map args = settings.arguments as Map;
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: SurahDetailsScreen(
+                  sName: args['sName'],
+                ),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => SurahDetailsScreen(
+                  sName: args['sName'],
+                ),
+              );
 
       default:
         return null;

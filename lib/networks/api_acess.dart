@@ -33,6 +33,10 @@ import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
 import 'package:islamic_dunia/features/home/model/ramjan_time_model.dart';
 import 'package:islamic_dunia/features/prayertime/data/monthly_prayer_rx.dart';
 import 'package:islamic_dunia/features/prayertime/model/monthly_pray_model.dart';
+import 'package:islamic_dunia/features/surah/data/get_surah_details_rx.dart';
+import 'package:islamic_dunia/features/surah/data/get_surah_rx.dart';
+import 'package:islamic_dunia/features/surah/model/surah_details_model.dart';
+import 'package:islamic_dunia/features/surah/model/surah_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 GetPrayerTimeRX getPrayerTimeRX = GetPrayerTimeRX(
@@ -49,6 +53,18 @@ GetRamjanTimeRX getRamjanTimeRX = GetRamjanTimeRX(
   empty: RamjanTimeModel(),
   dataFetcher: BehaviorSubject<RamjanTimeModel>(),
 );
+
+GetSurahRX getSurahRX = GetSurahRX(
+  empty: SurahModel(),
+  dataFetcher: BehaviorSubject<SurahModel>(),
+);
+
+GetSurahDetailsRX getSurahDetailsRX = GetSurahDetailsRX(
+  empty: SurahDetailModel(),
+  dataFetcher: BehaviorSubject<SurahDetailModel>(),
+);
+
+
 
 // GetSignUpRX getSignUpRXObj =
 //     GetSignUpRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

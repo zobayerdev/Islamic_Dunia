@@ -225,6 +225,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
             ),
           ),
         ),
+      
       ),
     );
   }

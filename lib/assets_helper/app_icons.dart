@@ -35,4 +35,8 @@ class AppIcons {
   static const String wallpaper = '$iconsRoute/wallpaper.svg';
   static const String upcoming = '$iconsRoute/upcoming.svg';
   static const String surah = '$iconsRoute/surah.svg';
+
+  // Surah Icons
+  static const String surahIcon = '$iconsRoute/surahIcon.svg';
+
 }

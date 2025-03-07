@@ -4,6 +4,8 @@ import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_images.dart';
+import 'package:islamic_dunia/helpers/all_routes.dart';
+import 'package:islamic_dunia/helpers/navigation_service.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -27,8 +29,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             physics: BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: 
-              Center(
+              child: Center(
                 child: Column(
                   children: [
                     Text(
@@ -156,31 +157,37 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.book,
-                                    height: 24,
-                                    width: 24,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Islamic Books",
-                                    style: TextFontStyle.textStyle14w600Poppins
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              //NavigationService.navigateTo(Routes.surahScreen);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.book,
+                                      height: 24,
+                                      width: 24,
                                       color: AppColors.primaryColor,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Islamic Books",
+                                      style: TextFontStyle
+                                          .textStyle14w600Poppins
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -223,31 +230,37 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.surah,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Islamic Surah",
-                                    style: TextFontStyle.textStyle14w600Poppins
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              NavigationService.navigateTo(Routes.surahScreen);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.surah,
+                                      height: 30,
+                                      width: 30,
                                       color: AppColors.primaryColor,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Islamic Surah",
+                                      style: TextFontStyle
+                                          .textStyle14w600Poppins
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

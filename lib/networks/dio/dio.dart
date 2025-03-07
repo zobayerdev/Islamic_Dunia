@@ -23,9 +23,17 @@ final class DioSingleton {
           NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
           NetworkConstants.ACCEPT_LANGUAGE:
               appData.read(kKeyCountryCode) ?? "pt",
-          NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
+          NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE, // FIX HERE
         });
-    dio = Dio(options)..interceptors.add(Logger());
+
+    dio = Dio(options);
+    
+    // If Logger() exists in your project, keep it. Otherwise, remove the line below.
+    try {
+      dio.interceptors.add(Logger());
+    } catch (e) {
+      debugPrint("Logger() not found, skipping interceptor.");
+    }
   }
 
   void update(String auth) {
@@ -37,16 +45,65 @@ final class DioSingleton {
       responseType: ResponseType.json,
       headers: {
         NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
-        // NetworkConstants.ACCEPT_LANGUAGE: appData.read(kKeyLanguage) ?? "pt",
-        // NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
         NetworkConstants.AUTHORIZATION: "Bearer $auth",
       },
       connectTimeout: const Duration(milliseconds: 100000),
       receiveTimeout: const Duration(milliseconds: 100000),
     );
-    dio = Dio(options)..interceptors.add(Logger());
+
+    dio = Dio(options);
+    
+    // If Logger() exists, add it; otherwise, skip.
+    try {
+      dio.interceptors.add(Logger());
+    } catch (e) {
+      debugPrint("Logger() not found, skipping interceptor.");
+    }
   }
 }
+
+// final class DioSingleton {
+//   static final DioSingleton _singleton = DioSingleton._internal();
+//   static CancelToken cancelToken = CancelToken();
+//   DioSingleton._internal();
+
+//   static DioSingleton get instance => _singleton;
+
+//   late Dio dio;
+
+//   void create() {
+//     BaseOptions options = BaseOptions(
+//         baseUrl: url,
+//         connectTimeout: const Duration(milliseconds: 100000),
+//         receiveTimeout: const Duration(milliseconds: 100000),
+//         headers: {
+//           NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
+//           NetworkConstants.ACCEPT_LANGUAGE:
+//               appData.read(kKeyCountryCode) ?? "pt",
+//           NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
+//         });
+//     dio = Dio(options)..interceptors.add(Logger());
+//   }
+
+//   void update(String auth) {
+//     if (kDebugMode) {
+//       print("Dio update");
+//     }
+//     BaseOptions options = BaseOptions(
+//       baseUrl: url,
+//       responseType: ResponseType.json,
+//       headers: {
+//         NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
+//         // NetworkConstants.ACCEPT_LANGUAGE: appData.read(kKeyLanguage) ?? "pt",
+//         // NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
+//         NetworkConstants.AUTHORIZATION: "Bearer $auth",
+//       },
+//       connectTimeout: const Duration(milliseconds: 100000),
+//       receiveTimeout: const Duration(milliseconds: 100000),
+//     );
+//     dio = Dio(options)..interceptors.add(Logger());
+//   }
+// }
 
 Future<Response> postHttp(String path, [dynamic data]) =>
     DioSingleton.instance.dio
