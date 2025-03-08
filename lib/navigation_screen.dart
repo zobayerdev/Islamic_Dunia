@@ -7,6 +7,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/features/chat/chat_screen.dart';
+
 import 'package:islamic_dunia/features/explore/explore_screen.dart';
 import 'package:islamic_dunia/features/home/presentation/home_screen.dart';
 import 'package:islamic_dunia/features/qibla/qibla_screen.dart';
@@ -35,7 +36,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     HomeScreen(),
     ExploreScreen(),
     QiblaCompassScreen(),
-    ChatScreen(),
+    AiChattingScreen(),
     SettingScreen()
   ];
 

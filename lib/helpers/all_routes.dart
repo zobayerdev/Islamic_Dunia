@@ -1,5 +1,5 @@
-import 'dart:io';
 
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
 import 'package:islamic_dunia/features/surah/presentatioon/details_surah_screen.dart';
@@ -24,6 +24,7 @@ final class RouteGenerator {
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      
       // case Routes.logInUserScreen:
       //   return Platform.isAndroid
       //       ? _FadedTransitionRoute(

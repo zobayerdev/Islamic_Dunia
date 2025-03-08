@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115" height="115" viewBox="0 0 115 115">
+  <defs>
+    <filter id="Rectangle_Copy" x="0" y="0" width="115" height="115" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Login_with" transform="translate(30 20)">
+    <g transform="matrix(1, 0, 0, 1, -30, -20)" filter="url(#Rectangle_Copy)">
+      <rect id="Rectangle_Copy-2" data-name="Rectangle Copy" width="55" height="55" rx="12" transform="translate(30 20)" fill="#fff"/>
+    </g>
+    <g id="iconfinder_16-apple_104490" transform="translate(17 15)">
+      <path id="Path" d="M16.731,7.142a5.572,5.572,0,0,1,2.656-4.686A5.747,5.747,0,0,0,14.888.02c-1.915-.195-3.738,1.128-4.71,1.128S7.707.048,6.119.076A6.02,6.02,0,0,0,1.03,3.161C-1.14,6.925.475,12.5,2.589,15.557c1.033,1.493,2.266,3.173,3.883,3.111,1.558-.062,2.147-1.008,4.03-1.008s2.413,1.008,4.061.976c1.676-.031,2.738-1.521,3.764-3.021a13.6,13.6,0,0,0,1.7-3.5A5.435,5.435,0,0,1,16.731,7.142Z" transform="translate(0.158 6.116)"/>
+      <path id="Path-2" data-name="Path" d="M3.68,3.928A5.426,5.426,0,0,0,4.96,0,5.513,5.513,0,0,0,1.336,1.862,5.159,5.159,0,0,0,.031,5.669,4.567,4.567,0,0,0,3.68,3.928Z" transform="translate(10.111 0.187)"/>
+    </g>
+  </g>
+</svg>

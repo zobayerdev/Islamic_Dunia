@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115" height="115" viewBox="0 0 115 115">
+  <defs>
+    <filter id="Rectangle_Copy" x="0" y="0" width="115" height="115" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Login_with" transform="translate(30 20)">
+    <g transform="matrix(1, 0, 0, 1, -30, -20)" filter="url(#Rectangle_Copy)">
+      <rect id="Rectangle_Copy-2" data-name="Rectangle Copy" width="55" height="55" rx="12" transform="translate(30 20)" fill="#fff"/>
+    </g>
+    <g id="iconfinder_facebook_317746" transform="translate(20 15)">
+      <path id="f_1_" d="M9.375,25V14.063h4.688l.781-4.687H9.375V7.031a2.072,2.072,0,0,1,2.344-2.344h2.344V0H10.156C6.25,0,4.688,2.344,4.688,6.25V9.375H0v4.688H4.688V25Z" fill="#3b5998"/>
+    </g>
+  </g>
+</svg>

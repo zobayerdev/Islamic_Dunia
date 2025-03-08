@@ -7,6 +7,7 @@ import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_images.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
+import 'package:islamic_dunia/common_widgets/custom_appbar.dart';
 import 'package:islamic_dunia/features/prayertime/model/monthly_pray_model.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:lottie/lottie.dart';
@@ -28,6 +29,9 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: "মাসিক নামাযের সময়",
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -38,7 +42,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   SizedBox(height: 20),
@@ -69,14 +73,13 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                                 color: AppColors.white,
                               ),
                               Text(
-                                "30 Day's Prayer Time",
-                                style: TextFontStyle.textStyle16w600Poppins
+                                "৩০ দিনের নামাযের সময়",
+                                style: TextFontStyle.textLine12w500Kalpurush
                                     .copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25),
                               ),
-                              SizedBox(height: 10),
                               Text(
                                 'مواقيت الصلاة لمدة 30 يومًا',
                                 style: TextFontStyle.textStyle16w600Poppins

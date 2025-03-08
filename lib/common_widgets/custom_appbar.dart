@@ -1,3 +1,4 @@
+import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,14 +34,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () {
                   NavigationService.goBack;
                 },
-                child: SvgPicture.asset(
-                  AppIcons.arrowPrevious,
-                  height: 28,
-                  width: 28,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SvgPicture.asset(
+                    AppIcons.backSvg,
+                    height: 16,
+                    width: 16,
+                  ),
                 ),
               ),
             ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.cDCE4E6.withOpacity(0.9),
       centerTitle: isCenterd,
       title: Text(
         title ?? '',

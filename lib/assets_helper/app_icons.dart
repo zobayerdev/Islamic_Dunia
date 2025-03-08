@@ -4,6 +4,7 @@ class AppIcons {
 
   /*all assets here*/
   static const String arrowPrevious = '$iconsRoute/arrow_next.svg';
+  static const String backSvg = '$iconsRoute/backSvg.svg';
   static const String homeSvg = '$iconsRoute/home_blue.svg';
   static const String exploreSvg = '$iconsRoute/explore_blue.svg';
   static const String savedSvg = '$iconsRoute/saved_grey.svg';

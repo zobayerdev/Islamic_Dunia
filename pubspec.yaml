@@ -53,6 +53,8 @@ dependencies:
   flutter_compass: ^0.8.1
   lottie: ^3.2.0
   permission_handler: ^11.4.0
+  shared_preferences: ^2.5.2
+  dash_chat_2: ^0.0.21
 
   # Using Graph
   # syncfusion_flutter_charts: ^27.1.57

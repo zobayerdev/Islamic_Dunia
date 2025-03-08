@@ -27,6 +27,9 @@ class AppColors {
   static const Color cE8E8E8 = Color(0xFFE8E8E8);
   static const Color cCFCFCF = Color(0xFFCFCFCF);
   static const Color cA0A0A0 = Color(0xFFA0A0A0);
+  static const Color c1C1C1C = Color(0xFF1C1C1C);
+  static const Color c919191 = Color(0xFF919191);
+  static const Color c66FCF1 = Color(0xFF66FCF1);
 
   static const Color secondaryColor = Color(0xFFFFB75A);
   static const Color primaruDarki = Color(0xFF02BF65);

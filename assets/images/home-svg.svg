@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.375" height="22.375" viewBox="0 0 22.375 22.375">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="22.375" height="22.375" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="home-svgrepo-com_2_" data-name="home-svgrepo-com (2)" clip-path="url(#clip-path)">
+    <g id="home-svgrepo-com_2_2" data-name="home-svgrepo-com (2)" transform="translate(-2 -2)">
+      <path id="Path_24414" data-name="Path 24414" d="M2,13.416c0-2.56,0-3.84.581-4.9s1.642-1.72,3.764-3.037L8.583,4.089C10.826,2.7,11.948,2,13.187,2s2.361.7,4.6,2.089L20.03,5.477c2.122,1.317,3.184,1.976,3.764,3.037s.581,2.341.581,4.9v1.7c0,4.364,0,6.546-1.311,7.9s-3.42,1.356-7.639,1.356H10.95c-4.219,0-6.329,0-7.639-1.356S2,19.481,2,15.117Z" fill="#fff"/>
+      <path id="Path_24415" data-name="Path 24415" d="M9.089,17.25a.839.839,0,0,0,0,1.678H15.8a.839.839,0,1,0,0-1.678Z" transform="translate(0.742 1.811)" fill="#007f6a"/>
+    </g>
+  </g>
+</svg>
