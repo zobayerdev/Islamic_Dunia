@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
@@ -90,31 +92,40 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.hadis,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "Hadith Collection",
-                                    style: TextFontStyle.textStyle14w600Poppins
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              NavigationService.navigateTo(
+                                Routes.hadisDetailsScreen,
+                              );
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.hadis,
+                                      height: 30,
+                                      width: 30,
                                       color: AppColors.primaryColor,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "হাদিস সমূহ",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -140,10 +151,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Dua Collection",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "দোয়া সমূহ",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -179,11 +191,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                     ),
                                     SizedBox(width: 10),
                                     Text(
-                                      "Islamic Books",
+                                      "ইসলামিক বুক",
                                       style: TextFontStyle
-                                          .textStyle14w600Poppins
+                                          .textLine12w500Kalpurush
                                           .copyWith(
                                         color: AppColors.primaryColor,
+                                        fontSize: 16,
                                       ),
                                     ),
                                   ],
@@ -213,10 +226,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Allah 99 Names",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "আসমাউল হুসনা",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -252,11 +266,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                     ),
                                     SizedBox(width: 10),
                                     Text(
-                                      "Islamic Surah",
+                                      "সূরা সমূহ",
                                       style: TextFontStyle
-                                          .textStyle14w600Poppins
+                                          .textLine12w500Kalpurush
                                           .copyWith(
                                         color: AppColors.primaryColor,
+                                        fontSize: 16,
                                       ),
                                     ),
                                   ],
@@ -286,10 +301,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Audio Surah",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "অডিও সূরা",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -321,10 +337,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Hajj & Umrah",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "হাজ্জ ও উমরাহ",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -353,10 +370,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Zaqat & Sadqah",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "যাকাত ও সাদাকা",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -388,10 +406,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Ramdan Calendar",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "রমাদান ক্যালেন্ডার",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -420,10 +439,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Islamic Wallpapers",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "ইসলামিক ওয়ালপেপার",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -455,10 +475,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Prayer Rules",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "নামাযের নিয়মাবলী",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -487,10 +508,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Upcoming Events",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "আপকামিং ইভেন্ট",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],

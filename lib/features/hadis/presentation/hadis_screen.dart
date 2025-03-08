@@ -1,7 +1,4 @@
-// ignore_for_file: unused_local_variable, deprecated_member_use
-
-import 'dart:developer';
-
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
@@ -10,32 +7,30 @@ import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_images.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/common_widgets/custom_appbar.dart';
-import 'package:islamic_dunia/features/surah/model/surah_details_model.dart';
+import 'package:islamic_dunia/features/hadis/widget/hadis_model.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:lottie/lottie.dart';
 
-class SurahDetailsScreen extends StatefulWidget {
-  final String sName;
-  const SurahDetailsScreen({required this.sName, super.key});
+class HadisScreen extends StatefulWidget {
+  const HadisScreen({super.key});
 
   @override
-  State<SurahDetailsScreen> createState() => _SurahDetailsScreenState();
+  State<HadisScreen> createState() => _HadisScreenState();
 }
 
-class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
+class _HadisScreenState extends State<HadisScreen> {
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    getSurahDetailsRX.surahDetailAPI(widget.sName);
+    getHadisRX.hadisAPI();
   }
 
   @override
   Widget build(BuildContext context) {
-    log("SurahDetailsScreen: ${widget.sName}");
-
     return Scaffold(
       appBar: CustomAppBar(
-        title: "বিস্তারিত সূরা",
+        title: 'হাদিস সমূহ',
       ),
       body: Container(
         height: double.infinity,
@@ -47,10 +42,9 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  SizedBox(height: 20),
                   Container(
                     height: 200,
                     width: double.infinity,
@@ -69,76 +63,37 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          StreamBuilder<SurahDetailModel>(
-                            stream: getSurahDetailsRX.dataFetcher,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                SurahDetailModel surahDetailModel =
-                                    snapshot.data!;
-                                var surahName = surahDetailModel;
-                                return Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      AppIcons.quran,
-                                      height: 50,
-                                      width: 50,
-                                      color: AppColors.white,
-                                    ),
-                                    Text(
-                                      widget.sName,
-                                      style: TextFontStyle
-                                          .textStyle16w600Poppins
-                                          .copyWith(
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      'مواقيت الصلاة لمدة 30 يومًا',
-                                      style: TextFontStyle
-                                          .textStyle16w600Poppins
-                                          .copyWith(
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                );
-                              } else if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Center(
-                                  child: Lottie.asset(
-                                    AppLottie.whiteLottie,
-                                    height: 30,
-                                    width: 30,
-                                  ),
-                                );
-                              } else {
-                                return Center(
-                                  child: Text(
-                                    "দুঃখিত !! সূরার তালিকা পাওয়া যায়নি",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
-                                      color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 26,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                );
-                              }
-                            },
+                          SvgPicture.asset(
+                            AppIcons.quran,
+                            height: 50,
+                            width: 50,
+                            color: AppColors.white,
+                          ),
+                          Text(
+                            "Hadis of the day",
+                            style:
+                                TextFontStyle.textStyle16w600Poppins.copyWith(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           SizedBox(height: 10),
+                          Text(
+                            'قال رسول الله صلى الله عليه وسلم:" من لا يَفعَل الخير للناس فهو من أسوأ الناس عند الله."',
+                            style:
+                                TextFontStyle.textStyle16w600Poppins.copyWith(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ],
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
-                  StreamBuilder<SurahDetailModel>(
-                    stream: getSurahDetailsRX.dataFetcher,
+                  StreamBuilder<HadisModel>(
+                    stream: getHadisRX.dataFetcher,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(
@@ -151,11 +106,11 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                       }
 
                       if (snapshot.hasData) {
-                        SurahDetailModel? surahDetailModel = snapshot.data;
+                        HadisModel? hadisModel = snapshot.data;
 
                         // Ensure we have a valid list of Surahs
-                        List<Surah>? surahList = surahDetailModel?.surah;
-                        if (surahList == null || surahList.isEmpty) {
+                        List<Datum>? hadisList = hadisModel?.data;
+                        if (hadisList == null || hadisList.isEmpty) {
                           return Center(
                             child: Text(
                               "দুঃখিত !! সূরার তালিকা পাওয়া যায়নি",
@@ -173,10 +128,10 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: surahList.length,
+                          itemCount: hadisList.length,
                           itemBuilder: (context, index) {
-                            Surah surah =
-                                surahList[index]; // Get each Surah correctly
+                            Datum surah =
+                                hadisList[index]; // Get each Surah correctly
 
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
@@ -191,7 +146,9 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                                   child: Column(
                                     children: [
                                       PrayerTimeWidget(
-                                        verseNumber: surah.verse.toString(),
+                                        titleLine: surah.title ?? "N/A",
+                                        banglaAnubadLine:
+                                            surah.banglaAnubad ?? "N/A",
                                         arabicLine: surah.arabic ??
                                             "N/A", // Correct Surah name
                                         banglaLine: surah.bangla ?? "N/A",
@@ -231,28 +188,9 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                         );
                       }
                     },
-                  )
-                
+                  ),
                 ],
               ),
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 80,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color:
-              AppColors.primaryColor, // Set the background color to transparent
-        ),
-        child: Center(
-          child: Text(
-            "অডিও সুরা শুনুন",
-            style: TextFontStyle.textLine12w500Kalpurush.copyWith(
-              color: AppColors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
             ),
           ),
         ),
@@ -262,16 +200,18 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 }
 
 class PrayerTimeWidget extends StatelessWidget {
-  final String verseNumber;
+  final String titleLine;
   final String banglaLine;
+  final String banglaAnubadLine;
   final String arabicLine;
   final String englishLine;
   final String ficon;
   final String licon;
 
   const PrayerTimeWidget({
+    required this.titleLine,
     required this.banglaLine,
-    required this.verseNumber,
+    required this.banglaAnubadLine,
     required this.arabicLine,
     required this.englishLine,
     required this.ficon,
@@ -292,7 +232,7 @@ class PrayerTimeWidget extends StatelessWidget {
             Expanded(
               // Allows text to take available space and wrap
               child: Text(
-                "আয়াত নং:- " + verseNumber,
+                titleLine,
                 style: TextFontStyle.textLine12w500Kalpurush.copyWith(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,

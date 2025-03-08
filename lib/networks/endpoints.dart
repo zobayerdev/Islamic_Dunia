@@ -105,6 +105,9 @@ final class Endpoints {
 
   static String surahDetailAPI(dynamic surahName) =>
       "https://online-quran-api.p.rapidapi.com/surahs/$surahName";
+
+  static String hadisAPI() =>
+      "https://www.zobayerdev.top/islamic_dunia/hadis_section/read_hadiths.php";
 }
 
 // API Service Class

@@ -144,7 +144,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                                             ),
                                           ),
                                           Text(
-                                            prayerTime[index].dateFor! ?? "N/A",
+                                            prayerTime[index].dateFor!,
                                             style: TextFontStyle
                                                 .textStyle16w600Poppins
                                                 .copyWith(
@@ -228,7 +228,6 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
             ),
           ),
         ),
-      
       ),
     );
   }
