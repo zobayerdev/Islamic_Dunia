@@ -132,33 +132,41 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.dua,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "দোয়া সমূহ",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              NavigationService.navigateTo(
+                                Routes.duaDetailsScreen,
+                              );
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.dua,
+                                      height: 30,
+                                      width: 30,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "দোয়া সমূহ",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

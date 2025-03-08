@@ -1,3 +1,5 @@
+import 'package:islamic_dunia/features/dua/data/get_dua_rx.dart';
+import 'package:islamic_dunia/features/dua/model/dua_model.dart';
 import 'package:islamic_dunia/features/hadis/data/get_hadis_rx.dart';
 import 'package:islamic_dunia/features/hadis/widget/hadis_model.dart';
 import 'package:islamic_dunia/features/home/data/get_prayer_time_rx.dart';
@@ -40,4 +42,9 @@ GetSurahDetailsRX getSurahDetailsRX = GetSurahDetailsRX(
 GetHadisRX getHadisRX = GetHadisRX(
   empty: HadisModel(),
   dataFetcher: BehaviorSubject<HadisModel>(),
+);
+
+GetDuaRX getDuaRX = GetDuaRX(
+  empty: DuaModel(),
+  dataFetcher: BehaviorSubject<DuaModel>(),
 );

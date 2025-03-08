@@ -108,6 +108,9 @@ final class Endpoints {
 
   static String hadisAPI() =>
       "https://www.zobayerdev.top/islamic_dunia/hadis_section/read_hadiths.php";
+
+  static String duaAPI() =>
+      "https://www.zobayerdev.top/islamic_dunia/dua_section/read_duas.php";
 }
 
 // API Service Class
