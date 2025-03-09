@@ -1,4 +1,3 @@
-// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
@@ -7,30 +6,29 @@ import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_images.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/common_widgets/custom_appbar.dart';
-import 'package:islamic_dunia/features/hadis/widget/hadis_model.dart';
+import 'package:islamic_dunia/features/allah_name/model/allah_model.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:lottie/lottie.dart';
 
-class HadisScreen extends StatefulWidget {
-  const HadisScreen({super.key});
+class AllahNameScreen extends StatefulWidget {
+  const AllahNameScreen({super.key});
 
   @override
-  State<HadisScreen> createState() => _HadisScreenState();
+  State<AllahNameScreen> createState() => _AllahNameScreenState();
 }
 
-class _HadisScreenState extends State<HadisScreen> {
+class _AllahNameScreenState extends State<AllahNameScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    getHadisRX.hadisAPI();
+    getAllahNameRX.allahNameAPI();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'হাদিস সমূহ',
+        title: 'Allah Name',
       ),
       body: Container(
         height: double.infinity,
@@ -42,7 +40,7 @@ class _HadisScreenState extends State<HadisScreen> {
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Container(
@@ -70,11 +68,12 @@ class _HadisScreenState extends State<HadisScreen> {
                             color: AppColors.white,
                           ),
                           Text(
-                            "Hadis of the day",
+                            "আসমাউল হুসনা",
                             style:
-                                TextFontStyle.textStyle16w600Poppins.copyWith(
+                                TextFontStyle.textLine12w500Kalpurush.copyWith(
                               color: AppColors.white,
                               fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
                           ),
                           SizedBox(height: 10),
@@ -92,8 +91,8 @@ class _HadisScreenState extends State<HadisScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  StreamBuilder<HadisModel>(
-                    stream: getHadisRX.dataFetcher,
+                  StreamBuilder<AllahModel>(
+                    stream: getAllahNameRX.dataFetcher,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(
@@ -106,11 +105,11 @@ class _HadisScreenState extends State<HadisScreen> {
                       }
 
                       if (snapshot.hasData) {
-                        HadisModel? hadisModel = snapshot.data;
+                        AllahModel? allahModel = snapshot.data;
 
                         // Ensure we have a valid list of Surahs
-                        List<Datum>? hadisList = hadisModel?.data;
-                        if (hadisList == null || hadisList.isEmpty) {
+                        List<Main>? nameList = allahModel?.main;
+                        if (nameList == null || nameList.isEmpty) {
                           return Center(
                             child: Text(
                               "দুঃখিত !! সূরার তালিকা পাওয়া যায়নি",
@@ -128,10 +127,10 @@ class _HadisScreenState extends State<HadisScreen> {
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: hadisList.length,
+                          itemCount: nameList.length,
                           itemBuilder: (context, index) {
-                            Datum surah =
-                                hadisList[index]; // Get each Surah correctly
+                            Main name =
+                                nameList[index]; // Get each Surah correctly
 
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
@@ -146,14 +145,10 @@ class _HadisScreenState extends State<HadisScreen> {
                                   child: Column(
                                     children: [
                                       PrayerTimeWidget(
-                                        titleLine: surah.title ?? "N/A",
-                                        banglaAnubadLine:
-                                            surah.banglaAnubad ?? "N/A",
-                                        arabicLine: surah.arabic ??
-                                            "N/A", // Correct Surah name
-                                        banglaLine: surah.bangla ?? "N/A",
-                                        englishLine: surah.english ??
-                                            "N/A", // Correct Surah name
+                                        arabicLine: name.arName ?? "",
+                                        banglaLine: name.enName ?? "",
+                                        englishLine: name.enName ?? "",
+                                        meaning: name.meaning ?? "",
                                         ficon: AppIcons.surahIcon,
                                         licon: AppIcons.fajr,
                                       ),
@@ -189,7 +184,6 @@ class _HadisScreenState extends State<HadisScreen> {
                       }
                     },
                   ),
-                
                 ],
               ),
             ),
@@ -201,18 +195,16 @@ class _HadisScreenState extends State<HadisScreen> {
 }
 
 class PrayerTimeWidget extends StatelessWidget {
-  final String titleLine;
+  final String meaning;
   final String banglaLine;
-  final String banglaAnubadLine;
   final String arabicLine;
   final String englishLine;
   final String ficon;
   final String licon;
 
   const PrayerTimeWidget({
-    required this.titleLine,
     required this.banglaLine,
-    required this.banglaAnubadLine,
+    required this.meaning,
     required this.arabicLine,
     required this.englishLine,
     required this.ficon,
@@ -233,7 +225,7 @@ class PrayerTimeWidget extends StatelessWidget {
             Expanded(
               // Allows text to take available space and wrap
               child: Text(
-                titleLine,
+                meaning,
                 style: TextFontStyle.textLine12w500Kalpurush.copyWith(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:islamic_dunia/features/allah_name/presentation/allah_name_screen.dart';
 import 'package:islamic_dunia/features/dua/presentation/dua_screen.dart';
 import 'package:islamic_dunia/features/hadis/presentation/hadis_screen.dart';
 import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
@@ -18,6 +19,7 @@ final class Routes {
   static const String surahDetailsScreen = '/surahDetailsScreen';
   static const String hadisDetailsScreen = '/hadisDetailsScreen';
   static const String duaDetailsScreen = '/duaDetailsScreen';
+  static const String allahNameScreen = '/allahNameScreen';
 }
 
 final class RouteGenerator {
@@ -47,6 +49,12 @@ final class RouteGenerator {
         return Platform.isAndroid
             ? _FadedTransitionRoute(widget: DuaScreen(), settings: settings)
             : CupertinoPageRoute(builder: (context) => DuaScreen());
+
+      case Routes.allahNameScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: AllahNameScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => AllahNameScreen());
 
       case Routes.surahDetailsScreen:
         final Map args = settings.arguments as Map;

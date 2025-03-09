@@ -83,6 +83,7 @@ final class NetworkConstants {
   static const CONTENT_TYPE = "content-Type";
   static const x_rapidapi_ua = "RapidAPI-Playground";
   static const x_rapidapi_host = "online-quran-api.p.rapidapi.com";
+  static const x_rapidapi_allah = "allah-name.p.rapidapi.com";
 }
 
 final class PaymentGateway {
@@ -111,10 +112,45 @@ final class Endpoints {
 
   static String duaAPI() =>
       "https://www.zobayerdev.top/islamic_dunia/dua_section/read_duas.php";
+
+  static String allahNameAPI() => "https://allah-name.p.rapidapi.com/name";
 }
 
 // API Service Class
 class ApiService {
+  final Dio _dio = Dio();
+
+  Future<void> fetchSurahs() async {
+    try {
+      Response response = await _dio.get(
+        Endpoints.surahAPI(),
+        options: Options(
+          headers: {
+            NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
+            "x-rapidapi-key":
+                NetworkConstants.APP_KEY, // Using API key from constants
+            "x-rapidapi-host": NetworkConstants.x_rapidapi_host,
+          },
+        ),
+      );
+
+      // Print the response data
+      print("Success: ${response.data}");
+    } on DioException catch (e) {
+      // Handle API errors
+      if (e.response != null) {
+        print("Error Response: ${e.response!.data}");
+      } else {
+        print("Dio Error: ${e.message}");
+      }
+    } catch (e) {
+      print("Unexpected Error: $e");
+    }
+  }
+}
+
+// API Service Class
+class ApiService_Allah {
   final Dio _dio = Dio();
 
   Future<void> fetchSurahs() async {
