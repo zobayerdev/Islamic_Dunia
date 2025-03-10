@@ -258,31 +258,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  AppIcons.quran,
-                                  height: 30,
-                                  width: 30,
-                                  color: AppColors.primaryColor,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "The Quran",
-                                  style: TextFontStyle.textStyle14w600Poppins
-                                      .copyWith(
+                        child: GestureDetector(
+                          onTap: () {
+                            NavigationService.navigateTo(
+                              Routes.quranPDFScreen,
+                            );
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.quran,
+                                    height: 30,
+                                    width: 30,
                                     color: AppColors.primaryColor,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "The Quran",
+                                    style: TextFontStyle.textStyle14w600Poppins
+                                        .copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

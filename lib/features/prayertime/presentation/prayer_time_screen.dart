@@ -162,7 +162,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                                           PrayerTimeWidget(
                                             prayerName: "ফজর",
                                             time: prayerTime[index].fajr! ??
-                                                "N/A",
+                                                'N/A',
                                             icon: AppIcons.fajr,
                                           ),
                                           PrayerTimeWidget(

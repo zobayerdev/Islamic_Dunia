@@ -48,7 +48,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: isCenterd,
       title: Text(
         title ?? '',
-        style: TextFontStyle.textStyle18w600Poppins,
+        style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+          fontSize: 18,
+          color: AppColors.primaryColor,
+        ),
       ),
       actions: actions,
     );

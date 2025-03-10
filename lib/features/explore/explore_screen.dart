@@ -403,32 +403,39 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.ramzan,
-                                    height: 22,
-                                    width: 22,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "রমাদান ক্যালেন্ডার",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              NavigationService.navigateTo(
+                                  Routes.ramadanScreen);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.ramzan,
+                                      height: 22,
+                                      width: 22,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "রমাদান ক্যালেন্ডার",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

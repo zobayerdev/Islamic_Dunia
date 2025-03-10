@@ -55,6 +55,8 @@ dependencies:
   permission_handler: ^11.4.0
   shared_preferences: ^2.5.2
   dash_chat_2: ^0.0.21
+  syncfusion_flutter_pdfviewer: ^28.2.9
+  flutter_pdfview: ^1.4.0
 
   # Using Graph
   # syncfusion_flutter_charts: ^27.1.57
@@ -117,6 +119,7 @@ flutter_gen:
       - assets/color/colors.xml
       - assets/color/order_status_color.xml
       - assets/color/delevery_status_color.xml
+
     outputs:
       class_name: AppColors
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -141,6 +144,7 @@ flutter:
     - assets/icons/
     - assets/lottie/
     - assets/images/
+    - assets/pdf/quran.pdf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

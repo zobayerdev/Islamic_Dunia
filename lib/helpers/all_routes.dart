@@ -4,6 +4,8 @@ import 'package:islamic_dunia/features/allah_name/presentation/allah_name_screen
 import 'package:islamic_dunia/features/dua/presentation/dua_screen.dart';
 import 'package:islamic_dunia/features/hadis/presentation/hadis_screen.dart';
 import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
+import 'package:islamic_dunia/features/quran_pdf/quran_pdf_screen.dart';
+import 'package:islamic_dunia/features/ramadan/presentation/ramadan_screen.dart';
 import 'package:islamic_dunia/features/surah/presentatioon/details_surah_screen.dart';
 import 'package:islamic_dunia/features/surah/presentatioon/surah_screen.dart';
 
@@ -20,6 +22,8 @@ final class Routes {
   static const String hadisDetailsScreen = '/hadisDetailsScreen';
   static const String duaDetailsScreen = '/duaDetailsScreen';
   static const String allahNameScreen = '/allahNameScreen';
+  static const String quranPDFScreen = '/quranPDFScreen';
+  static const String ramadanScreen = '/ramadanScreen';
 }
 
 final class RouteGenerator {
@@ -55,6 +59,17 @@ final class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: AllahNameScreen(), settings: settings)
             : CupertinoPageRoute(builder: (context) => AllahNameScreen());
+
+      case Routes.quranPDFScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: QuranPDFScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => QuranPDFScreen());
+
+      case Routes.ramadanScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(widget: RamadanScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => RamadanScreen());
 
       case Routes.surahDetailsScreen:
         final Map args = settings.arguments as Map;

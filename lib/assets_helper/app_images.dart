@@ -11,6 +11,7 @@ class AppImages {
 
   static const String bgImage = '$imageRoute/bg_image.jpg';
   static const String explorebg = '$imageRoute/explore_banner.jpg';
+  static const String ramadan = '$imageRoute/ramadan.jpg';
   static const String qibla = '$imageRoute/qibla.png';
 
   // Errolspread Love
