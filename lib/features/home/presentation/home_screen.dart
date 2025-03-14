@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColors.primaryColor.withOpacity(0.9),
+          color: AppColors.cDCE4E6.withOpacity(0.9),
         ),
         child: SafeArea(
           child: SingleChildScrollView(
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style:
                                   TextFontStyle.textStyle13w500Poppins.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
+                                color: AppColors.primaryColor,
                               ),
                             ),
                             SizedBox(height: 3),
@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: TextFontStyle.smallStyle10w500Poppins
                                   .copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
+                                color: AppColors.primaryColor,
                               ),
                             ),
                           ],
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 230,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: AppColors.whiteColor.withOpacity(0.2),
+                      color: AppColors.whiteColor,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Padding(
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style:
                                 TextFontStyle.textStyle13w500Poppins.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppColors.whiteColor,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                           SizedBox(height: 5),
@@ -165,14 +165,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             style:
                                 TextFontStyle.textStyle13w500Poppins.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppColors.whiteColor,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                           Text(
                             "Then which of the favours of your Lord will ye deny?",
                             style:
                                 TextFontStyle.smallStyle11w400Poppins.copyWith(
-                              color: AppColors.whiteColor,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                           SizedBox(height: 5),
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             currentTime,
                             style: TextFontStyle.headLine24w600Poppins.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppColors.whiteColor,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                           SizedBox(height: 10),
@@ -477,7 +477,7 @@ class PrayerTimeWidget extends StatelessWidget {
             Text(
               prayerName,
               style: TextFontStyle.smallStyle11w400Poppins.copyWith(
-                color: AppColors.whiteColor,
+                color: AppColors.primaryColor,
               ),
             ),
             SizedBox(height: 5),
@@ -485,13 +485,13 @@ class PrayerTimeWidget extends StatelessWidget {
               icon,
               height: 20,
               width: 20,
-              color: AppColors.whiteColor,
+              color: AppColors.primaryColor,
             ),
             SizedBox(height: 5),
             Text(
               time,
               style: TextFontStyle.smallStyle11w400Poppins.copyWith(
-                color: AppColors.whiteColor,
+                color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
               ),
             ),

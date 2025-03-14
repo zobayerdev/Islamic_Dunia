@@ -68,6 +68,8 @@ class AppImages {
   static const String plusIconBlackWhite = '$imageRoute/plusIconBlackWhite.png';
   static const String them_3 = '$imageRoute/them_3.png';
   static const String ai_icon = '$imageRoute/ai_icon.png';
+  static const String mosqueImg = '$imageRoute/mosque.png';
+  static const String muslim_man = '$imageRoute/muslim_man.png';
 
   // navigation bar images
 }

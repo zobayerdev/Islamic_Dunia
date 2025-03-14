@@ -2,12 +2,10 @@
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
-
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:islamic_dunia/features/chat/chat_screen.dart';
-
+import 'package:islamic_dunia/features/chat/presentation/gemini_chat.dart';
 import 'package:islamic_dunia/features/explore/explore_screen.dart';
 import 'package:islamic_dunia/features/home/presentation/home_screen.dart';
 import 'package:islamic_dunia/features/qibla/qibla_screen.dart';
@@ -36,7 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     HomeScreen(),
     ExploreScreen(),
     QiblaCompassScreen(),
-    AiChattingScreen(),
+    HomePage(),
     SettingScreen()
   ];
 
@@ -88,20 +86,20 @@ class _NavigationScreenState extends State<NavigationScreen> {
           selectedColor: Colors.red,
           strokeColor: AppColors.primaryColor,
           unSelectedColor: Colors.black,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.primaryColor.withOpacity(0.9),
           items: [
             CustomNavigationBarItem(
               icon: SvgPicture.asset(
                 AppIcons.homeSvg,
                 color: (_currentIndex == 0)
-                    ? AppColors.primaryColor
+                    ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
                 "${"Home"} ",
                 style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 0)
-                      ? AppColors.primaryColor
+                      ? AppColors.white
                       : AppColors.cA0A0A0,
                 ),
               ),
@@ -110,14 +108,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: SvgPicture.asset(
                 AppIcons.exploreSvg,
                 color: (_currentIndex == 1)
-                    ? AppColors.primaryColor
+                    ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
                 "Explore",
                 style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 1)
-                      ? AppColors.primaryColor
+                      ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
                 ),
               ),
@@ -126,14 +124,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: SvgPicture.asset(
                 AppIcons.qiblaSvg,
                 color: (_currentIndex == 2)
-                    ? AppColors.primaryColor
+                    ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
                 "Qibla",
                 style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 2)
-                      ? AppColors.primaryColor
+                      ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
                 ),
               ),
@@ -142,14 +140,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: SvgPicture.asset(
                 AppIcons.chatSvg,
                 color: (_currentIndex == 3)
-                    ? AppColors.primaryColor
+                    ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
                 "Chat",
                 style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 3)
-                      ? AppColors.primaryColor
+                      ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
                 ),
               ),
@@ -159,14 +157,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: SvgPicture.asset(
                 AppIcons.settingSvg,
                 color: (_currentIndex == 4)
-                    ? AppColors.primaryColor
+                    ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
                 "Setting",
                 style: TextFontStyle.textStyle12w400Poppins.copyWith(
                   color: (_currentIndex == 4)
-                      ? AppColors.primaryColor
+                      ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
                 ),
               ),
