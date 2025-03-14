@@ -22,7 +22,6 @@ class DuaScreen extends StatefulWidget {
 class _DuaScreenState extends State<DuaScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getDuaRX.duaAPI();
   }
