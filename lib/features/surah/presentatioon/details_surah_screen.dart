@@ -15,8 +15,9 @@ import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:lottie/lottie.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
-  final String sName;
-  const SurahDetailsScreen({required this.sName, super.key});
+  final String sName, sBangla;
+  const SurahDetailsScreen(
+      {required this.sName, required this.sBangla, super.key});
 
   @override
   State<SurahDetailsScreen> createState() => _SurahDetailsScreenState();
@@ -50,23 +51,22 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  SizedBox(height: 20),
                   Container(
                     height: 200,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
-                        image: AssetImage(AppImages.explorebg),
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.primaryColor.withOpacity(0.9),
-                          BlendMode.darken,
-                        ),
+                        image: AssetImage(AppImages.suraCard),
+                        fit: BoxFit.contain,
+                        // colorFilter: ColorFilter.mode(
+                        //   AppColors.primaryColor.withOpacity(0.9),
+                        //   BlendMode.darken,
+                        // ),
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           StreamBuilder<SurahDetailModel>(
@@ -77,32 +77,50 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                                     snapshot.data!;
                                 var surahName = surahDetailModel;
                                 return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(
-                                      AppIcons.quran,
-                                      height: 50,
-                                      width: 50,
-                                      color: AppColors.white,
+                                    SizedBox(height: 50),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        // SvgPicture.asset(
+                                        //   AppIcons.quran,
+                                        //   height: 50,
+                                        //   width: 50,
+                                        //   color: AppColors.white,
+                                        // ),
+                                        Text(
+                                          'মহিমান্বিত সূরার নাম',
+                                          style: TextFontStyle
+                                              .textLine12w500Kalpurush
+                                              .copyWith(
+                                            color: AppColors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      widget.sName,
-                                      style: TextFontStyle
-                                          .textStyle16w600Poppins
-                                          .copyWith(
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      'مواقيت الصلاة لمدة 30 يومًا',
-                                      style: TextFontStyle
-                                          .textStyle16w600Poppins
-                                          .copyWith(
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          AppImages.makkaImage,
+                                          height: 40,
+                                          width: 40,
+                                        ),
+                                        Text(
+                                          widget.sBangla,
+                                          style: TextFontStyle
+                                              .textLine12w500Kalpurush
+                                              .copyWith(
+                                            color: AppColors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 );
@@ -232,7 +250,6 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                       }
                     },
                   )
-                
                 ],
               ),
             ),

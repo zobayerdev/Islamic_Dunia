@@ -70,6 +70,12 @@ class AppImages {
   static const String ai_icon = '$imageRoute/ai_icon.png';
   static const String mosqueImg = '$imageRoute/mosque.png';
   static const String muslim_man = '$imageRoute/muslim_man.png';
+  static const String suraCard = '$imageRoute/suraCard.png';
+  static const String makkaImage = '$imageRoute/makkaImage.png';
+
+  // * daily dua
+  static const String dailyduaImage = '$imageRoute/daily_dua.png';
+  static const String playStoreImage = '$imageRoute/playstore.png';
 
   // navigation bar images
 }

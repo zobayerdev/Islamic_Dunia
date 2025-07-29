@@ -40,4 +40,11 @@ class AppIcons {
   // Surah Icons
   static const String surahIcon = '$iconsRoute/surahIcon.svg';
 
+  // * custom package test
+  static const String facebook = '$iconsRoute/facebook.svg';
+  static const String github = '$iconsRoute/github.svg';
+  static const String google = '$iconsRoute/google.svg';
+
+  // * daily ayat
+  static const String dailyAyat = '$iconsRoute/ayat.svg';
 }

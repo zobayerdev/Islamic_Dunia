@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_dunia/features/allah_name/presentation/allah_name_screen.dart';
+import 'package:islamic_dunia/features/daily_ayat/presentation/daily_ayat_details_screen.dart';
+import 'package:islamic_dunia/features/daily_ayat/presentation/daily_ayat_screen.dart';
 import 'package:islamic_dunia/features/dua/presentation/dua_screen.dart';
 import 'package:islamic_dunia/features/hadis/presentation/hadis_screen.dart';
 import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
@@ -24,6 +26,8 @@ final class Routes {
   static const String allahNameScreen = '/allahNameScreen';
   static const String quranPDFScreen = '/quranPDFScreen';
   static const String ramadanScreen = '/ramadanScreen';
+  static const String dailyAyatScreen = '/dailyAyatScreen';
+  static const String dailyAyatDetailsScreen = '/dailyAyatDetailsScreen';
 }
 
 final class RouteGenerator {
@@ -77,11 +81,39 @@ final class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: SurahDetailsScreen(
                   sName: args['sName'],
+                  sBangla: args['sBangla'],
                 ),
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => SurahDetailsScreen(
                   sName: args['sName'],
+                  sBangla: args['sBangla'],
+                ),
+              );
+
+      case Routes.dailyAyatScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: DailyAyatScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => DailyAyatScreen());
+
+      case Routes.dailyAyatDetailsScreen:
+        final Map args = settings.arguments as Map;
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: DailyAyatDetailsScreen(
+                  title: args['title'],
+                  description: args['description'],
+                  imageURL: args['imageURL'],
+                  reference: args['reference'],
+                ),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => DailyAyatDetailsScreen(
+                  title: args['title'],
+                  description: args['description'],
+                  imageURL: args['imageURL'],
+                  reference: args['reference'],
                 ),
               );
 

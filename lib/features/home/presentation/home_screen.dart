@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,11 +8,10 @@ import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
-import 'package:islamic_dunia/features/home/model/ramjan_time_model.dart';
 import 'package:islamic_dunia/helpers/navigation_service.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
+import 'package:islamic_dunia/prayer_timer_screen.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../helpers/all_routes.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
+
   @override
   void dispose() {
     _timer.cancel();
@@ -68,77 +70,78 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  StreamBuilder<RamjanTimeModel>(
-                    stream: getRamjanTimeRX
-                        .dataFetcher, // Assuming this is your stream
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Lottie.asset(
-                          AppLottie.whiteLottie,
-                          height: 100,
-                          width: 100,
-                        );
-                      }
-                      if (snapshot.hasData) {
-                        RamjanTimeModel ramjanTimeModel = snapshot.data!;
-                        var time = ramjanTimeModel.data!;
+                  // StreamBuilder<RamjanTimeModel>(
+                  //   stream: getRamjanTimeRX
+                  //       .dataFetcher, // Assuming this is your stream
+                  //   builder: (context, snapshot) {
+                  //     if (snapshot.connectionState == ConnectionState.waiting) {
+                  //       return Lottie.asset(
+                  //         AppLottie.whiteLottie,
+                  //         height: 100,
+                  //         width: 100,
+                  //       );
+                  //     }
+                  //     if (snapshot.hasData) {
+                  //       RamjanTimeModel ramjanTimeModel = snapshot.data!;
+                  //       var time = ramjanTimeModel.data!;
 
-                        // Get today's date in "dd MMM yyyy" format (e.g., 02 Mar 2025)
-                        String todayDate =
-                            DateFormat('dd MMM yyyy').format(DateTime.now());
+                  //       // Get today's date in "dd MMM yyyy" format (e.g., 02 Mar 2025)
+                  //       String todayDate =
+                  //           DateFormat('dd MMM yyyy').format(DateTime.now());
 
-                        // Filter data to get only today's date
-                        var todayData = time
-                            .where((datum) => datum.date == todayDate)
-                            .toList();
+                  //       // Filter data to get only today's date
+                  //       var todayData = time
+                  //           .where((datum) => datum.date == todayDate)
+                  //           .toList();
 
-                        if (todayData.isEmpty) {
-                          return Center(
-                            child: Text(
-                              'No data available for today.',
-                              style:
-                                  TextFontStyle.textStyle13w500Poppins.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
-                              ),
-                            ),
-                          );
-                        }
+                  //       if (todayData.isEmpty) {
+                  //         return Center(
+                  //           child: Text(
+                  //             'No data available for today.',
+                  //             style:
+                  //                 TextFontStyle.textStyle13w500Poppins.copyWith(
+                  //               fontWeight: FontWeight.bold,
+                  //               color: AppColors.whiteColor,
+                  //             ),
+                  //           ),
+                  //         );
+                  //       }
 
-                        // Display today's data
-                        return Column(
-                          children: [
-                            Text(
-                              todayData[0].ramjanNo!.toString() +
-                                  " Ramadan" +
-                                  ", " +
-                                  "2025",
-                              style:
-                                  TextFontStyle.textStyle13w500Poppins.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
-                            SizedBox(height: 3),
-                            Text(
-                              todayData[0].dayName! + ", " + todayData[0].date!,
-                              style: TextFontStyle.smallStyle10w500Poppins
-                                  .copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
-                          ],
-                        );
-                      } else {
-                        return Lottie.asset(
-                          AppLottie.whiteLottie,
-                          height: 80,
-                          width: 80,
-                        );
-                      }
-                    },
-                  ),
+                  //       // Display today's data
+                  //       return Column(
+                  //         children: [
+                  //           Text(
+                  //             todayData[0].ramjanNo!.toString() +
+                  //                 " Ramadan" +
+                  //                 ", " +
+                  //                 "2025",
+                  //             style:
+                  //                 TextFontStyle.textStyle13w500Poppins.copyWith(
+                  //               fontWeight: FontWeight.bold,
+                  //               color: AppColors.primaryColor,
+                  //             ),
+                  //           ),
+                  //           SizedBox(height: 3),
+                  //           Text(
+                  //             todayData[0].dayName! + ", " + todayData[0].date!,
+                  //             style: TextFontStyle.smallStyle10w500Poppins
+                  //                 .copyWith(
+                  //               fontWeight: FontWeight.bold,
+                  //               color: AppColors.primaryColor,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       );
+                  //     } else {
+                  //       return Lottie.asset(
+                  //         AppLottie.whiteLottie,
+                  //         height: 80,
+                  //         width: 80,
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+
                   SizedBox(height: 20),
                   Container(
                     height: 230,
@@ -152,12 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           Text(
-                            "Assalamualaikum, User",
-                            style:
-                                TextFontStyle.textStyle13w500Poppins.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryColor,
-                            ),
+                            "আসসালামুয়ালাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু",
+                            style: TextFontStyle.textLine12w500Kalpurush
+                                .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                    fontSize: 16),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -207,29 +210,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     PrayerTimeWidget(
-                                      prayerName: "Fajr",
+                                      prayerName: "ফজর",
                                       time: time[0].fajr ?? 'No time available',
                                       icon: AppIcons.fajr,
                                     ),
                                     PrayerTimeWidget(
-                                      prayerName: "Dhuhr",
+                                      prayerName: "যোহর",
                                       time:
                                           time[0].dhuhr ?? 'No time available',
                                       icon: AppIcons.duhr,
                                     ),
                                     PrayerTimeWidget(
-                                      prayerName: "Asr",
+                                      prayerName: "আসর",
                                       time: time[0].asr ?? 'No time available',
                                       icon: AppIcons.asr,
                                     ),
                                     PrayerTimeWidget(
-                                      prayerName: "Maghrib",
+                                      prayerName: "মাগরিব",
                                       time: time[0].maghrib ??
                                           'No time available',
                                       icon: AppIcons.magrib,
                                     ),
                                     PrayerTimeWidget(
-                                      prayerName: "Isha",
+                                      prayerName: "এশা",
                                       time: time[0].isha ?? 'No time available',
                                       icon: AppIcons.isha,
                                     ),
@@ -253,6 +256,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
+                  ),
+                  SizedBox(height: 20),
+                  PrayerTimer(
+                    apiUrl:
+                        'https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=2',
+                    city: 'Dhaka',
+                    country: 'Bangladesh',
+                    method: 2,
+                    progressBarSize: 125.0,
+                    progressBarColor: AppColors.primaryColor,
+                    progressBarBackgroundColor: Colors.grey,
+                    fontColor: AppColors.primaryColor,
+                    fontName: 'Hind Siliguri',
+                    containerHeight: '220',
+                    // Custom font color
                   ),
                   SizedBox(height: 20),
                   Row(
@@ -282,10 +300,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "The Quran",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "আল কোরআন",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -314,10 +333,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 SizedBox(width: 10),
                                 Text(
-                                  "Story Time",
-                                  style: TextFontStyle.textStyle14w600Poppins
+                                  "ইসলামিক গল্প",
+                                  style: TextFontStyle.textLine12w500Kalpurush
                                       .copyWith(
                                     color: AppColors.primaryColor,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
@@ -348,10 +368,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 SizedBox(width: 10),
                                 Text(
-                                  "Tasbih Counter",
-                                  style: TextFontStyle.textStyle14w600Poppins
+                                  "তাসবিহ গননা",
+                                  style: TextFontStyle.textLine12w500Kalpurush
                                       .copyWith(
                                     color: AppColors.primaryColor,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
@@ -385,10 +406,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    "Prayer Time",
-                                    style: TextFontStyle.textStyle14w600Poppins
+                                    "নামাযের সময়সূচী",
+                                    style: TextFontStyle.textLine12w500Kalpurush
                                         .copyWith(
                                       color: AppColors.primaryColor,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ],
@@ -476,8 +498,9 @@ class PrayerTimeWidget extends StatelessWidget {
           children: [
             Text(
               prayerName,
-              style: TextFontStyle.smallStyle11w400Poppins.copyWith(
+              style: TextFontStyle.textLine12w500Kalpurush.copyWith(
                 color: AppColors.primaryColor,
+                fontSize: 16,
               ),
             ),
             SizedBox(height: 5),
@@ -493,6 +516,7 @@ class PrayerTimeWidget extends StatelessWidget {
               style: TextFontStyle.smallStyle11w400Poppins.copyWith(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
+                fontSize: 12,
               ),
             ),
           ],

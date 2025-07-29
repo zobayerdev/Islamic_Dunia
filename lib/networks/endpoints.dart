@@ -107,11 +107,16 @@ final class Endpoints {
   static String surahDetailAPI(dynamic surahName) =>
       "https://online-quran-api.p.rapidapi.com/surahs/$surahName";
 
+  // * hadis API
   static String hadisAPI() =>
-      "https://www.zobayerdev.top/islamic_dunia/hadis_section/read_hadiths.php";
+      "https://islamicduniya.zobayerdev.top/get_hadiths.php";
 
-  static String duaAPI() =>
-      "https://www.zobayerdev.top/islamic_dunia/dua_section/read_duas.php";
+  // * dua API
+  static String duaAPI() => "https://islamicduniya.zobayerdev.top/get_duas.php";
+
+  // * daily ayat API
+  static String dailyAyatAPI() =>
+      "https://islamicduniya.zobayerdev.top/get_daily_ayats.php";
 
   static String allahNameAPI() => "https://allah-name.p.rapidapi.com/name";
 }

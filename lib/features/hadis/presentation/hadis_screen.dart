@@ -109,7 +109,7 @@ class _HadisScreenState extends State<HadisScreen> {
                         HadisModel? hadisModel = snapshot.data;
 
                         // Ensure we have a valid list of Surahs
-                        List<Datum>? hadisList = hadisModel?.data;
+                        List<Hadith>? hadisList = hadisModel?.hadiths;
                         if (hadisList == null || hadisList.isEmpty) {
                           return Center(
                             child: Text(
@@ -130,8 +130,8 @@ class _HadisScreenState extends State<HadisScreen> {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: hadisList.length,
                           itemBuilder: (context, index) {
-                            Datum surah =
-                                hadisList[index]; // Get each Surah correctly
+                            Hadith surah =
+                                hadisList[index]; // * Get each Surah correctly
 
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
@@ -148,11 +148,11 @@ class _HadisScreenState extends State<HadisScreen> {
                                       PrayerTimeWidget(
                                         titleLine: surah.title ?? "N/A",
                                         banglaAnubadLine:
-                                            surah.banglaAnubad ?? "N/A",
+                                            surah.banglaMeaning ?? "N/A",
                                         arabicLine: surah.arabic ??
                                             "N/A", // Correct Surah name
-                                        banglaLine: surah.bangla ?? "N/A",
-                                        englishLine: surah.english ??
+                                        banglaLine: surah.content ?? "N/A",
+                                        englishLine: surah.reference ??
                                             "N/A", // Correct Surah name
                                         ficon: AppIcons.surahIcon,
                                         licon: AppIcons.fajr,
@@ -189,7 +189,6 @@ class _HadisScreenState extends State<HadisScreen> {
                       }
                     },
                   ),
-                
                 ],
               ),
             ),

@@ -58,6 +58,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^28.2.9
   flutter_pdfview: ^1.4.0
   flutter_gemini: ^3.0.0
+  custom_social_button: ^1.0.4
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

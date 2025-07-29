@@ -107,8 +107,8 @@ class _DuaScreenState extends State<DuaScreen> {
                       if (snapshot.hasData) {
                         DuaModel? duaModel = snapshot.data;
 
-                        // Ensure we have a valid list of Surahs
-                        List<Datum>? duaList = duaModel?.data;
+                        // Ensure we have a valid list of Duas
+                        List<Dua>? duaList = duaModel?.duas;
                         if (duaList == null || duaList.isEmpty) {
                           return Center(
                             child: Text(
@@ -129,7 +129,7 @@ class _DuaScreenState extends State<DuaScreen> {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: duaList.length,
                           itemBuilder: (context, index) {
-                            Datum surah =
+                            Dua surah =
                                 duaList[index]; // Get each Surah correctly
 
                             return Padding(
@@ -147,11 +147,11 @@ class _DuaScreenState extends State<DuaScreen> {
                                       PrayerTimeWidget(
                                         titleLine: surah.title ?? "N/A",
                                         banglaAnubadLine:
-                                            surah.banglaAnubad ?? "N/A",
+                                            surah.banglaMeaning ?? "N/A",
                                         arabicLine: surah.arabic ??
                                             "N/A", // Correct Surah name
-                                        banglaLine: surah.bangla ?? "N/A",
-                                        englishLine: surah.english ??
+                                        banglaLine: surah.content ?? "N/A",
+                                        englishLine: 'surah.english' ??
                                             "N/A", // Correct Surah name
                                         ficon: AppIcons.surahIcon,
                                         licon: AppIcons.fajr,
@@ -321,30 +321,30 @@ class PrayerTimeWidget extends StatelessWidget {
             SizedBox(width: 10),
           ],
         ),
-        SizedBox(height: 10),
-        Row(
-          children: [
-            SvgPicture.asset(
-              ficon,
-              height: 20,
-            ),
-            SizedBox(width: 5),
-            Expanded(
-              // Allows text to take available space and wrap
-              child: Text(
-                englishLine,
-                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-                softWrap: true, // Ensures wrapping
-                overflow: TextOverflow.visible, // Ensures text is shown fully
-              ),
-            ),
-            SizedBox(width: 10),
-          ],
-        ),
+        // SizedBox(height: 10),
+        // Row(
+        //   children: [
+        //     SvgPicture.asset(
+        //       ficon,
+        //       height: 20,
+        //     ),
+        //     SizedBox(width: 5),
+        //     // Expanded(
+        //     //   // Allows text to take available space and wrap
+        //     //   child: Text(
+        //     //     englishLine,
+        //     //     style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+        //     //       color: AppColors.primaryColor,
+        //     //       fontWeight: FontWeight.bold,
+        //     //       fontSize: 12,
+        //     //     ),
+        //     //     softWrap: true, // Ensures wrapping
+        //     //     overflow: TextOverflow.visible, // Ensures text is shown fully
+        //     //   ),
+        //     // ),
+        //     SizedBox(width: 10),
+        //   ],
+        // ),
         SizedBox(height: 10),
         Row(
           children: [

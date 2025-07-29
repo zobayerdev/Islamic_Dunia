@@ -17,6 +17,61 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Align(
+            alignment: Alignment.center,
+            child: Text(
+              "নোটিশ বক্স",
+              style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                color: AppColors.primaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          content: Container(
+            height: 280,
+            width: 200,
+            child: Column(
+              children: [
+                Image.asset(AppImages.playStoreImage, height: 150, width: 150),
+                SizedBox(height: 10),
+                Text(
+                  "আমাদের এই ফিচারসটি এখনো ডেভেলপমেন্টে রয়েছে। অতি শীঘ্রই আমরা এই ফিচারটি আপনাদের জন্য নিয়ে আসব।",
+                  style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // ডায়ালগ বন্ধ করা
+              },
+              child: Text(
+                "বন্ধ করুন",
+                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,102 +352,40 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.audio,
-                                    height: 24,
-                                    width: 24,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "অডিও সূরা",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
+                          child: GestureDetector(
+                            onTap: () {
+                              NavigationService.navigateTo(
+                                  Routes.dailyAyatScreen);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.kaaba,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "হাজ্জ ও উমরাহ",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.dailyAyat,
+                                      height: 30,
+                                      width: 30,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.donate,
-                                    height: 22,
-                                    width: 22,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "যাকাত ও সাদাকা",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 16,
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "দৈনিক আয়াত",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -405,8 +398,88 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              NavigationService.navigateTo(
-                                  Routes.ramadanScreen);
+                              _showDialog(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.kaaba,
+                                      height: 30,
+                                      width: 30,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "হাজ্জ ও উমরাহ",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialog(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.donate,
+                                      height: 22,
+                                      width: 22,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "যাকাত ও সাদাকা",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialog(context);
                             },
                             child: Container(
                               height: 60,
@@ -442,33 +515,39 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.wallpaper,
-                                    height: 22,
-                                    width: 22,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "ইসলামিক ওয়ালপেপার",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialog(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.wallpaper,
+                                      height: 22,
+                                      width: 22,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "ইসলামিক ওয়ালপেপার",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -479,65 +558,77 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.prayer,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "নামাযের নিয়মাবলী",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialog(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.prayer,
+                                      height: 30,
+                                      width: 30,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "নামাযের নিয়মাবলী",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AppIcons.upcoming,
-                                    height: 30,
-                                    width: 30,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    "আপকামিং ইভেন্ট",
-                                    style: TextFontStyle.textLine12w500Kalpurush
-                                        .copyWith(
+                          child: GestureDetector(
+                            onTap: () {
+                              _showDialog(context);
+                            },
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppIcons.audio,
+                                      height: 24,
+                                      width: 24,
                                       color: AppColors.primaryColor,
-                                      fontSize: 16,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "অডিও সূরা",
+                                      style: TextFontStyle
+                                          .textLine12w500Kalpurush
+                                          .copyWith(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

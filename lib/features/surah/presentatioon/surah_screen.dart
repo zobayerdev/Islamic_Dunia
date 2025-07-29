@@ -128,12 +128,14 @@ class _SsurahScreenState extends State<SsurahScreen> {
                                 child: GestureDetector(
                                   onTap: () async {
                                     log("===============> ${surahName[index].name}");
+                                    log("===============> ${surahName[index].bangla}");
                                     var sName = surahName[index].name;
+                                    var sBangla = surahName[index].bangla;
                                     await getSurahDetailsRX
                                         .surahDetailAPI(surahName[index].name);
                                     NavigationService.navigateToWithArgs(
                                       Routes.surahDetailsScreen,
-                                      {"sName": sName},
+                                      {"sName": sName, "sBangla": sBangla},
                                     );
                                   },
                                   child: Container(

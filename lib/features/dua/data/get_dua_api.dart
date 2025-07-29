@@ -19,8 +19,8 @@ class GetDuaApi {
         Endpoints.duaAPI(),
       );
 
-      // Check if the response is successful (HTTP 200)
-      if (response.statusCode == 200) {
+      // * Check if the response is successful (HTTP 200)
+      if (response.data["success"] == true) {
         Map<String, dynamic> data =
             json.decode(json.encode(response.data)); // Decode the response data
         // Parse the data into a ProfileModel and return it

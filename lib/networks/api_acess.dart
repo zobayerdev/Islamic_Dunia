@@ -1,5 +1,7 @@
 import 'package:islamic_dunia/features/allah_name/data/get_name_rx.dart';
 import 'package:islamic_dunia/features/allah_name/model/allah_model.dart';
+import 'package:islamic_dunia/features/daily_ayat/data/daily_ayat_rx.dart';
+import 'package:islamic_dunia/features/daily_ayat/model/daily_ayat_model.dart';
 import 'package:islamic_dunia/features/dua/data/get_dua_rx.dart';
 import 'package:islamic_dunia/features/dua/model/dua_model.dart';
 import 'package:islamic_dunia/features/hadis/data/get_hadis_rx.dart';
@@ -54,4 +56,9 @@ GetDuaRX getDuaRX = GetDuaRX(
 GetAllahNameRX getAllahNameRX = GetAllahNameRX(
   empty: AllahModel(),
   dataFetcher: BehaviorSubject<AllahModel>(),
+);
+
+GetDailyAyatAPIRX getDailyAyatAPIRX = GetDailyAyatAPIRX(
+  empty: DailyAyatModel(),
+  dataFetcher: BehaviorSubject<DailyAyatModel>(),
 );
