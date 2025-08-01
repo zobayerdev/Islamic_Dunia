@@ -30,7 +30,8 @@ class _LoadingState extends State<Loading> {
     //AutoAppUpdateUtil.instance.checkAppUpdate();
     await setInitValue();
 
-    await getDailyAyatAPIRX.dailyAyatAPI();
+    await getPrayerTimeRX.prayerTimeAPI();
+    await getBookRX.bookAPI();
 
     if (appData.read(kKeyIsLoggedIn)) {
       String token = appData.read(kKeyAccessToken);

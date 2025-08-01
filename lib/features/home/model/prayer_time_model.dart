@@ -1,40 +1,30 @@
-// To parse this JSON data, do
-//
-//     final prayerTimeModel = prayerTimeModelFromJson(jsonString);
-
 import 'dart:convert';
 
-PrayerTimeModel prayerTimeModelFromJson(String str) =>
-    PrayerTimeModel.fromJson(json.decode(str));
-
-String prayerTimeModelToJson(PrayerTimeModel data) =>
-    json.encode(data.toJson());
-
 class PrayerTimeModel {
-  String? title;
-  String? query;
-  String? prayerTimeModelFor;
-  int? method;
-  String? prayerMethodName;
-  String? daylight;
-  String? timezone;
-  String? mapImage;
-  String? sealevel;
-  TodayWeather? todayWeather;
-  String? link;
-  String? qiblaDirection;
-  String? latitude;
-  String? longitude;
-  String? address;
-  String? city;
-  String? state;
-  String? postalCode;
-  String? country;
-  String? countryCode;
-  List<Item>? items;
-  int? statusValid;
-  int? statusCode;
-  String? statusDescription;
+  final String? title;
+  final String? query;
+  final String? prayerTimeModelFor;
+  final int? method;
+  final String? prayerMethodName;
+  final int? daylight;
+  final int? timezone;
+  final String? mapImage;
+  final String? sealevel;
+  final TodayWeather? todayWeather;
+  final String? link;
+  final String? qiblaDirection;
+  final String? latitude;
+  final String? longitude;
+  final String? address;
+  final String? city;
+  final String? state;
+  final String? postalCode;
+  final String? country;
+  final String? countryCode;
+  final List<Item>? items;
+  final int? statusValid;
+  final int? statusCode;
+  final String? statusDescription;
 
   PrayerTimeModel({
     this.title,
@@ -62,6 +52,11 @@ class PrayerTimeModel {
     this.statusCode,
     this.statusDescription,
   });
+
+  factory PrayerTimeModel.fromRawJson(String str) =>
+      PrayerTimeModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
 
   factory PrayerTimeModel.fromJson(Map<String, dynamic> json) =>
       PrayerTimeModel(
@@ -126,13 +121,13 @@ class PrayerTimeModel {
 }
 
 class Item {
-  String? dateFor;
-  String? fajr;
-  String? shurooq;
-  String? dhuhr;
-  String? asr;
-  String? maghrib;
-  String? isha;
+  final String? dateFor;
+  final String? fajr;
+  final String? shurooq;
+  final String? dhuhr;
+  final String? asr;
+  final String? maghrib;
+  final String? isha;
 
   Item({
     this.dateFor,
@@ -143,6 +138,10 @@ class Item {
     this.maghrib,
     this.isha,
   });
+
+  factory Item.fromRawJson(String str) => Item.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         dateFor: json["date_for"],
@@ -166,13 +165,18 @@ class Item {
 }
 
 class TodayWeather {
-  String? pressure;
-  String? temperature;
+  final int? pressure;
+  final String? temperature;
 
   TodayWeather({
     this.pressure,
     this.temperature,
   });
+
+  factory TodayWeather.fromRawJson(String str) =>
+      TodayWeather.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
 
   factory TodayWeather.fromJson(Map<String, dynamic> json) => TodayWeather(
         pressure: json["pressure"],

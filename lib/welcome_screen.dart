@@ -8,7 +8,7 @@ final class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.white,
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
@@ -20,7 +20,7 @@ final class WelcomeScreen extends StatelessWidget {
               height: 40,
             ),
             Image.asset(
-              AppImages.appLogo,
+              AppImages.playStoreImage,
               height: 170,
               width: 170,
             ),

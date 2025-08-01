@@ -45,8 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
-
   @override
   void dispose() {
     _timer.cancel();
@@ -261,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   PrayerTimer(
                     apiUrl:
                         'https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=2',
-                    city: 'Dhaka',
+                    city: 'Tongi',
                     country: 'Bangladesh',
                     method: 2,
                     progressBarSize: 125.0,
@@ -351,31 +349,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  AppIcons.tasbih,
-                                  height: 30,
-                                  width: 30,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "তাসবিহ গননা",
-                                  style: TextFontStyle.textLine12w500Kalpurush
-                                      .copyWith(
-                                    color: AppColors.primaryColor,
-                                    fontSize: 16,
+                        child: GestureDetector(
+                          onTap: () {
+                            NavigationService.navigateTo(
+                              Routes.tasbihScreen,
+                            );
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.tasbih,
+                                    height: 30,
+                                    width: 30,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "তাসবিহ গননা",
+                                    style: TextFontStyle.textLine12w500Kalpurush
+                                        .copyWith(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

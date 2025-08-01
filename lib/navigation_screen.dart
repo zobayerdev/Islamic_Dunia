@@ -5,10 +5,9 @@ import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:islamic_dunia/features/chat/presentation/gemini_chat.dart';
 import 'package:islamic_dunia/features/explore/explore_screen.dart';
 import 'package:islamic_dunia/features/home/presentation/home_screen.dart';
-import 'package:islamic_dunia/features/qibla/qibla_screen.dart';
+import 'package:islamic_dunia/features/islamic_books/islamic_book_screen.dart';
 import 'package:islamic_dunia/features/setting/setting_screen.dart';
 
 final class NavigationScreen extends StatefulWidget {
@@ -33,8 +32,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<StatefulWidget> _screens = [
     HomeScreen(),
     ExploreScreen(),
-    QiblaCompassScreen(),
-    HomePage(),
+    IslamicBook(),
     SettingScreen()
   ];
 
@@ -51,7 +49,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       args = ModalRoute.of(context)!.settings.arguments;
     }
     if (args != null) {
-      _colorIndex = 5;
+      _colorIndex = 4;
       screenPage = args as StatefulWidget;
       var newColorindex = -1;
 
@@ -96,8 +94,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
                     : AppColors.cA0A0A0,
               ),
               title: Text(
-                "${"Home"} ",
-                style: TextFontStyle.textStyle12w400Poppins.copyWith(
+                "${"হোম"} ",
+                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                  fontSize: 15,
                   color: (_currentIndex == 0)
                       ? AppColors.white
                       : AppColors.cA0A0A0,
@@ -112,8 +111,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
                     : AppColors.cA0A0A0,
               ),
               title: Text(
-                "Explore",
-                style: TextFontStyle.textStyle12w400Poppins.copyWith(
+                "এক্সপ্লোর",
+                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                  fontSize: 15,
                   color: (_currentIndex == 1)
                       ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
@@ -122,14 +122,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
             ),
             CustomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppIcons.qiblaSvg,
+                AppIcons.book,
                 color: (_currentIndex == 2)
                     ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
-                "Qibla",
-                style: TextFontStyle.textStyle12w400Poppins.copyWith(
+                "বুক",
+                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                  fontSize: 15,
                   color: (_currentIndex == 2)
                       ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
@@ -138,14 +139,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
             ),
             CustomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppIcons.chatSvg,
+                AppIcons.settingSvg,
                 color: (_currentIndex == 3)
                     ? AppColors.whiteColor
                     : AppColors.cA0A0A0,
               ),
               title: Text(
-                "Chat",
-                style: TextFontStyle.textStyle12w400Poppins.copyWith(
+                "সেটিংস",
+                style: TextFontStyle.textLine12w500Kalpurush.copyWith(
+                  fontSize: 15,
                   color: (_currentIndex == 3)
                       ? AppColors.whiteColor
                       : AppColors.cA0A0A0,
@@ -153,22 +155,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
               ),
             ),
 
-            CustomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppIcons.settingSvg,
-                color: (_currentIndex == 4)
-                    ? AppColors.whiteColor
-                    : AppColors.cA0A0A0,
-              ),
-              title: Text(
-                "Setting",
-                style: TextFontStyle.textStyle12w400Poppins.copyWith(
-                  color: (_currentIndex == 4)
-                      ? AppColors.whiteColor
-                      : AppColors.cA0A0A0,
-                ),
-              ),
-            ),
+            // CustomNavigationBarItem(
+            //   icon: SvgPicture.asset(
+            //     AppIcons.settingSvg,
+            //     color: (_currentIndex == 4)
+            //         ? AppColors.whiteColor
+            //         : AppColors.cA0A0A0,
+            //   ),
+            //   title: Text(
+            //     "Setting",
+            //     style: TextFontStyle.textStyle12w400Poppins.copyWith(
+            //       color: (_currentIndex == 4)
+            //           ? AppColors.whiteColor
+            //           : AppColors.cA0A0A0,
+            //     ),
+            //   ),
+            // ),
             // CustomNavigationBarItem(
             //   icon: Image.asset(
             //     Assets.icons.profileIcon.path,

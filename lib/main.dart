@@ -1,10 +1,6 @@
-import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:islamic_dunia/features/chat/widgets/gemini_constant.dart';
-import 'package:islamic_dunia/features/my_screen.dart';
-import 'package:islamic_dunia/prayer_timer_screen.dart';
 import 'constants/custome_theme.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';
@@ -22,7 +18,6 @@ void main() async {
 
   // initiInternetChecker();
   DioSingleton.instance.create();
-  Gemini.init(apiKey: geminiApiKey);
   runApp(const MyApp());
 }
 
@@ -61,7 +56,7 @@ class UtillScreenMobile extends StatelessWidget {
         showMaterialDialog(context);
       },
       child: MaterialApp(
-        //    showPerformanceOverlay: true,
+        // showPerformanceOverlay: true,
         theme: ThemeData(
             unselectedWidgetColor: Colors.white,
             primarySwatch: CustomTheme.kToDark,

@@ -1,15 +1,17 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:islamic_dunia/features/allah_name/presentation/allah_name_screen.dart';
-import 'package:islamic_dunia/features/daily_ayat/presentation/daily_ayat_details_screen.dart';
-import 'package:islamic_dunia/features/daily_ayat/presentation/daily_ayat_screen.dart';
-import 'package:islamic_dunia/features/dua/presentation/dua_screen.dart';
-import 'package:islamic_dunia/features/hadis/presentation/hadis_screen.dart';
-import 'package:islamic_dunia/features/prayertime/presentation/prayer_time_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/allah_name/presentation/allah_name_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/daily_ayat/presentation/daily_ayat_details_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/daily_ayat/presentation/daily_ayat_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/dua/presentation/dua_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/hadis/presentation/hadis_screen.dart';
+import 'package:islamic_dunia/features/islamic_books/books_view_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/prayertime/presentation/prayer_time_screen.dart';
 import 'package:islamic_dunia/features/quran_pdf/quran_pdf_screen.dart';
-import 'package:islamic_dunia/features/ramadan/presentation/ramadan_screen.dart';
-import 'package:islamic_dunia/features/surah/presentatioon/details_surah_screen.dart';
-import 'package:islamic_dunia/features/surah/presentatioon/surah_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/ramadan/presentation/ramadan_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/details_surah_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/surah_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/tashbih/tasbih_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -28,6 +30,8 @@ final class Routes {
   static const String ramadanScreen = '/ramadanScreen';
   static const String dailyAyatScreen = '/dailyAyatScreen';
   static const String dailyAyatDetailsScreen = '/dailyAyatDetailsScreen';
+  static const String tasbihScreen = '/tasbihScreen';
+  static const String pdfViewScreen = '/pdfViewScreen';
 }
 
 final class RouteGenerator {
@@ -114,6 +118,28 @@ final class RouteGenerator {
                   description: args['description'],
                   imageURL: args['imageURL'],
                   reference: args['reference'],
+                ),
+              );
+
+      // * tashbih app
+      case Routes.tasbihScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: TasbihHomePage(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => TasbihHomePage());
+
+      // * pdf view screen
+      case Routes.pdfViewScreen:
+        final Map args = settings.arguments as Map;
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: PDFViewScreen(
+                  pdfURL: args['pdfURL'],
+                ),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => PDFViewScreen(
+                  pdfURL: args['pdfURL'],
                 ),
               );
 
