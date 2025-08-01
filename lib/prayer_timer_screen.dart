@@ -9,6 +9,7 @@ class PrayerTimer extends StatefulWidget {
   final String? apiUrl;
   final String city;
   final String country;
+  final String date;
   final int method;
   final double progressBarSize;
   final Color progressBarColor;
@@ -29,6 +30,7 @@ class PrayerTimer extends StatefulWidget {
     this.fontColor = Colors.black,
     this.fontName,
     this.containerHeight,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -66,7 +68,7 @@ class _PrayerTimerState extends State<PrayerTimer> {
   Future<void> loadPrayerTimes() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? savedPrayerTimes = prefs.getString(
-      'prayer_times_${widget.city}_${widget.country}',
+      'prayer_times_${widget.city}_${widget.country}_${widget.date}',
     );
 
     if (savedPrayerTimes != null) {
@@ -84,7 +86,8 @@ class _PrayerTimerState extends State<PrayerTimer> {
   Future<void> fetchPrayerTimesFromApi() async {
     try {
       final url = widget.apiUrl ??
-          'https://api.aladhan.com/v1/timingsByCity?city=${widget.city}&country=${widget.country}&method=${widget.method}';
+          'https://api.aladhan.com/v1/timingsByAddress/${widget.date}?address=${widget.city},${widget.country}&method=1,';
+      //'https://api.aladhan.com/v1/timingsByCity?city=${widget.city}&country=${widget.country}&method=${widget.method}';
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {

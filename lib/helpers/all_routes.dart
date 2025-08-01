@@ -12,6 +12,7 @@ import 'package:islamic_dunia/features/explore/presentation/ramadan/presentation
 import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/details_surah_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/surah_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/tashbih/tasbih_screen.dart';
+import 'package:islamic_dunia/navigation_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -32,6 +33,8 @@ final class Routes {
   static const String dailyAyatDetailsScreen = '/dailyAyatDetailsScreen';
   static const String tasbihScreen = '/tasbihScreen';
   static const String pdfViewScreen = '/pdfViewScreen';
+  static const String homeScreen = '/homeScreen';
+  static const String navigationScreen = '/navigationScreen';
 }
 
 final class RouteGenerator {
@@ -41,6 +44,14 @@ final class RouteGenerator {
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      // * Home Screen
+      case Routes.navigationScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: NavigationScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => NavigationScreen());
+
+      // * Prayer Time Screen
       case Routes.prayerTimeScreen:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

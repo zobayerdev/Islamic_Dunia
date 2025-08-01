@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,9 @@ import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
+import 'package:islamic_dunia/constants/app_constants.dart';
 import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
+import 'package:islamic_dunia/helpers/di.dart';
 import 'package:islamic_dunia/helpers/navigation_service.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'package:islamic_dunia/prayer_timer_screen.dart';
@@ -24,7 +27,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String currentTime = '';
   late Timer _timer;
-
+  String selectedAddressEnglish = '';
+  String selectedAddressBengali = '';
   void getCurrentTime() {
     final now = DateTime.now();
     final formatter = DateFormat('hh:mm:ss a');
@@ -33,12 +37,30 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  String getCurrentDate() {
+    final now = DateTime.now();
+    final formatter = DateFormat('dd-MM-yyyy');
+    return formatter.format(now);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    log('Current date: ${getCurrentDate()}');
+  }
+
   @override
   void initState() {
     super.initState();
     getCurrentTime();
     getPrayerTimeRX.prayerTimeAPI();
     getRamjanTimeRX.ramjanTimeAPI();
+
+    selectedAddressEnglish = appData.read(kKeySelectedAddress);
+    selectedAddressBengali = appData.read(kKeySelectedAddressBengali);
+
+    log('Retraive Selected Address (English): $selectedAddressEnglish');
+    log('Retraive Selected Address (Bengali): $selectedAddressBengali');
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       getCurrentTime();
@@ -140,6 +162,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   },
                   // ),
 
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.whiteColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "আপনার বর্তমান লোকেশন",
+                            style:
+                                TextFontStyle.textLine12w500Kalpurush.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            selectedAddressBengali + ', বাংলাদেশ',
+                            style:
+                                TextFontStyle.textLine12w500Kalpurush.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Container(
                     height: 230,
@@ -258,8 +312,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 20),
                   PrayerTimer(
                     apiUrl:
-                        'https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=2',
-                    city: 'Tongi',
+                        'https://api.aladhan.com/v1/timingsByAddress/${getCurrentDate()}?address=$selectedAddressEnglish&country=Bangladesh&method=1,',
+                    // 'https://api.aladhan.com/v1/timingsByCity?city=$selectedAddressEnglish&country=Bangladesh&method=2',
+                    city: selectedAddressEnglish,
                     country: 'Bangladesh',
                     method: 2,
                     progressBarSize: 125.0,
@@ -268,6 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontColor: AppColors.primaryColor,
                     fontName: 'Hind Siliguri',
                     containerHeight: '220',
+                    date: getCurrentDate(),
                     // Custom font color
                   ),
                   SizedBox(height: 20),

@@ -1,6 +1,7 @@
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:islamic_dunia/features/location_getting/location_getting.dart';
 import 'constants/custome_theme.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';

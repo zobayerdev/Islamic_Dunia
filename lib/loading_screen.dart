@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:islamic_dunia/features/location_getting/location_getting.dart';
 import 'package:islamic_dunia/navigation_screen.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
 import 'constants/app_constants.dart';
@@ -22,7 +25,6 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     loadInitialData();
-
     super.initState();
   }
 
@@ -49,11 +51,13 @@ class _LoadingState extends State<Loading> {
     if (_isLoading) {
       return const WelcomeScreen();
     } else {
+      // Print kKeyIsExploring value to console
+      log('kKeyIsExploring: ${appData.read(kKeyIsExploring)}');
       return appData.read(kKeyIsLoggedIn)
           ? WelcomeScreen()
-          : appData.read(kKeyfirstTime)
-              ? NavigationScreen() //AuthRuleScreen()
-              : NavigationScreen();
+          : appData.read(kKeyIsExploring)
+              ? NavigationScreen()
+              : DistrictSelector();
     }
   }
 }

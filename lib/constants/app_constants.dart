@@ -12,7 +12,6 @@ final class AppRegExpText {
       r"^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
 }
 
-
 const String kImageUrl = 'imageUrl';
 // Keys
 const String kKeyfirstTime = "first";
@@ -72,6 +71,8 @@ const String kKeyproductID = 'productId';
 const String kKeyShopSlug = 'shop_slug';
 const String kKeyRestaurantID = 'productId';
 const String kKeyIsExploring = 'exploring';
+const String kKeySelectedAddress = 'selected_address';
+const String kKeySelectedAddressBengali = 'selected_address_bengali';
 //order statuses
 
 const List<String> kLanguagesKey = [
