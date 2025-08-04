@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_dunia/features/explore/presentation/allah_name/presentation/allah_name_screen.dart';
+import 'package:islamic_dunia/features/explore/presentation/compass/compass_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/daily_ayat/presentation/daily_ayat_details_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/daily_ayat/presentation/daily_ayat_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/dua/presentation/dua_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/hadis/presentation/hadis_screen.dart';
 import 'package:islamic_dunia/features/islamic_books/books_view_screen.dart';
 import 'package:islamic_dunia/features/home/presentation/prayertime/presentation/prayer_time_screen.dart';
+import 'package:islamic_dunia/features/islamic_story/presentation/story_screen.dart';
+import 'package:islamic_dunia/features/islamic_story/presentation/story_view_screen.dart';
 import 'package:islamic_dunia/features/quran_pdf/quran_pdf_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/ramadan/presentation/ramadan_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/details_surah_screen.dart';
@@ -35,6 +38,9 @@ final class Routes {
   static const String pdfViewScreen = '/pdfViewScreen';
   static const String homeScreen = '/homeScreen';
   static const String navigationScreen = '/navigationScreen';
+  static const String islamicStoryScreen = '/islamicStoryScreen';
+  static const String islamicStoryViewScreen = '/islamicStoryViewScreen';
+  static const String makkaTracker = '/makkaTracker';
 }
 
 final class RouteGenerator {
@@ -153,6 +159,39 @@ final class RouteGenerator {
                   pdfURL: args['pdfURL'],
                 ),
               );
+
+      // * story screen
+      case Routes.islamicStoryScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: IslamicStoryScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => IslamicStoryScreen());
+
+      // * story view screen
+      case Routes.islamicStoryViewScreen:
+        final Map args = settings.arguments as Map;
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: IslamicStoryViewScreen(
+                  title: args['title'],
+                  reference: args['reference'],
+                  description: args['description'],
+                ),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => IslamicStoryViewScreen(
+                  title: args['title'],
+                  reference: args['reference'],
+                  description: args['description'],
+                ),
+              );
+
+      // * Makka screen
+      case Routes.makkaTracker:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: QiblaCompassScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => QiblaCompassScreen());
 
       default:
         return null;

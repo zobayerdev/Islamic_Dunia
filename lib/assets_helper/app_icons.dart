@@ -48,4 +48,8 @@ class AppIcons {
   // * daily ayat
   static const String dailyAyat = '$iconsRoute/ayat.svg';
   static const String tapIcon = '$iconsRoute/tapIcon.svg';
+
+  // * Settings Icons
+  static const String refreshIcon = '$iconsRoute/refresh.svg';
+
 }

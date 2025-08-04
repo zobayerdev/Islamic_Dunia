@@ -96,6 +96,9 @@ final class Endpoints {
   static String prayerTimeAPI() =>
       "https://muslimsalat.com//bangladesh/daily.json?key=b14e849e4c8659e734283102b44d0d2d";
 
+  static String dailyPrayerTime(dynamic lat, dynamic lng, dynamic method, dynamic school) =>
+      "https://islamicapi.com/api/v1/prayer-time/?lat=$lat&lon=$lng&method=$method&school=$school&api_key=g4GrZNUo0qgEePYOQZ4FdUymDI7EDDTYQ55UvyGeITGtA488";
+
   static String monthPrayerTimeAPI() =>
       "https://muslimsalat.com/bangladesh/monthly.json?key=b14e849e4c8659e734283102b44d0d2d";
 
@@ -123,6 +126,13 @@ final class Endpoints {
       "https://islamicduniya.zobayerdev.top/get_daily_ayats.php";
 
   static String allahNameAPI() => "https://allah-name.p.rapidapi.com/name";
+
+  static String dailyFastingAPI(dynamic lat, dynamic lon) =>
+      "https://islamicapi.com/api/v1/fasting/?lat=$lat&lon=$lon&api_key=g4GrZNUo0qgEePYOQZ4FdUymDI7EDDTYQ55UvyGeITGtA488";
+
+      // * story api
+  static String storyAPI() => "https://islamicduniya.zobayerdev.top/api_stories.php";
+
 }
 
 // API Service Class

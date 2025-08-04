@@ -9,7 +9,8 @@ import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/constants/app_constants.dart';
-import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
+import 'package:islamic_dunia/features/home/presentation/fasting_time/model/fasting_model.dart';
+import 'package:islamic_dunia/features/home/presentation/prayertime/model/home_prayertime_model.dart';
 import 'package:islamic_dunia/helpers/di.dart';
 import 'package:islamic_dunia/helpers/navigation_service.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
@@ -25,6 +26,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // * read data from appData
+  late final dynamic latitude,
+      longitude,
+      timeZone,
+      timeZoneArea,
+      school,
+      address,
+      calculation;
+  // * others variables
   String currentTime = '';
   late Timer _timer;
   String selectedAddressEnglish = '';
@@ -53,14 +63,24 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getCurrentTime();
-    getPrayerTimeRX.prayerTimeAPI();
-    getRamjanTimeRX.ramjanTimeAPI();
 
-    selectedAddressEnglish = appData.read(kKeySelectedAddress);
-    selectedAddressBengali = appData.read(kKeySelectedAddressBengali);
+    latitude = appData.read(kKeyLatitude);
+    longitude = appData.read(kKeyLongitude);
+    timeZone = appData.read(kKeyTimeZone);
+    timeZoneArea = appData.read(kKeyTimeZoneArea);
+    school = appData.read(kKeySchool);
+    calculation = appData.read(kKeyCalculation);
+    address = appData.read(kKeySelectedAddress);
 
-    log('Retraive Selected Address (English): $selectedAddressEnglish');
-    log('Retraive Selected Address (Bengali): $selectedAddressBengali');
+    log('Latitude: $latitude, Longitude: $longitude');
+    log('Time Zone: $timeZone, Time Zone Area: $timeZoneArea');
+    log('School: $school, Calculation: $calculation');
+    log('Address: $address');
+
+    getPrayerTimeRX.prayerTimeAPI(
+        lat: latitude, lng: longitude, method: calculation, school: school);
+
+    getFastingRX.dailyFastingAPI(lat: latitude, lon: longitude);
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       getCurrentTime();
@@ -73,8 +93,39 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  String convertTo12HourFormat(String time24) {
+    try {
+      // Split the time string into hours and minutes
+      final parts = time24.split(':');
+      int hour = int.parse(parts[0]);
+      int minute = int.parse(parts[1]);
+
+      // Determine AM/PM and convert hour
+      String period = hour >= 12 ? 'PM' : 'AM';
+      if (hour == 0) {
+        hour = 12; // Midnight case
+      } else if (hour > 12) {
+        hour = hour - 12; // Convert to 12-hour format
+      }
+
+      // Format the time with leading zeros
+      return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $period';
+    } catch (e) {
+      // Return original time if parsing fails
+      return time24;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    appData.read(kKeySelectedAddress);
+    appData.read(kKeyTimeZone);
+    appData.read(kKeyTimeZoneArea);
+    appData.read(kKeyLatitude);
+    appData.read(kKeyLongitude);
+    appData.read(kKeySchool);
+    appData.read(kKeyCalculation);
+
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -90,113 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // StreamBuilder<RamjanTimeModel>(
-                  //   stream: getRamjanTimeRX
-                  //       .dataFetcher, // Assuming this is your stream
-                  //   builder: (context, snapshot) {
-                  //     if (snapshot.connectionState == ConnectionState.waiting) {
-                  //       return Lottie.asset(
-                  //         AppLottie.whiteLottie,
-                  //         height: 100,
-                  //         width: 100,
-                  //       );
-                  //     }
-                  //     if (snapshot.hasData) {
-                  //       RamjanTimeModel ramjanTimeModel = snapshot.data!;
-                  //       var time = ramjanTimeModel.data!;
-
-                  //       // Get today's date in "dd MMM yyyy" format (e.g., 02 Mar 2025)
-                  //       String todayDate =
-                  //           DateFormat('dd MMM yyyy').format(DateTime.now());
-
-                  //       // Filter data to get only today's date
-                  //       var todayData = time
-                  //           .where((datum) => datum.date == todayDate)
-                  //           .toList();
-
-                  //       if (todayData.isEmpty) {
-                  //         return Center(
-                  //           child: Text(
-                  //             'No data available for today.',
-                  //             style:
-                  //                 TextFontStyle.textStyle13w500Poppins.copyWith(
-                  //               fontWeight: FontWeight.bold,
-                  //               color: AppColors.whiteColor,
-                  //             ),
-                  //           ),
-                  //         );
-                  //       }
-
-                  //       // Display today's data
-                  //       return Column(
-                  //         children: [
-                  //           Text(
-                  //             todayData[0].ramjanNo!.toString() +
-                  //                 " Ramadan" +
-                  //                 ", " +
-                  //                 "2025",
-                  //             style:
-                  //                 TextFontStyle.textStyle13w500Poppins.copyWith(
-                  //               fontWeight: FontWeight.bold,
-                  //               color: AppColors.primaryColor,
-                  //             ),
-                  //           ),
-                  //           SizedBox(height: 3),
-                  //           Text(
-                  //             todayData[0].dayName! + ", " + todayData[0].date!,
-                  //             style: TextFontStyle.smallStyle10w500Poppins
-                  //                 .copyWith(
-                  //               fontWeight: FontWeight.bold,
-                  //               color: AppColors.primaryColor,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       );
-                  //     } else {
-                  //       return Lottie.asset(
-                  //         AppLottie.whiteLottie,
-                  //         height: 80,
-                  //         width: 80,
-                  //       );
-                  //     }
-                  //   },
-                  // ),
-
+                  // * get prayer time
                   Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.whiteColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "আপনার বর্তমান লোকেশন",
-                            style:
-                                TextFontStyle.textLine12w500Kalpurush.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            selectedAddressBengali + ', বাংলাদেশ',
-                            style:
-                                TextFontStyle.textLine12w500Kalpurush.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    height: 230,
+                    height: 260,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: AppColors.whiteColor,
@@ -239,9 +186,86 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(height: 10),
-                          StreamBuilder<PrayerTimeModel>(
-                            stream: getPrayerTimeRX
-                                .dataFetcher, // Assuming you have a stream
+                          StreamBuilder<FastingModel>(
+                            stream: getFastingRX.horseissue,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                FastingModel fastingModel = snapshot.data!;
+                                var time = fastingModel.data?.fasting;
+
+                                String sahurTime =
+                                    time?[0].time?.sahur ?? '00:00';
+                                String iftarTime =
+                                    time?[0].time?.iftar ?? '00:00';
+
+                                // Convert times to 12-hour format
+                                String formattedSahurTime =
+                                    convertTo12HourFormat(sahurTime);
+                                String formattedIftarTime =
+                                    convertTo12HourFormat(iftarTime);
+
+                                log('Fasting times: ${time?[0].time?.sahur}, ${time?[0].time?.iftar}');
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'সেহেরি: ',
+                                            style: TextFontStyle
+                                                .textLine12w500Kalpurush
+                                                .copyWith(
+                                              color: AppColors.primaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          Text(
+                                            formattedSahurTime,
+                                            style: TextFontStyle
+                                                .textLine12w500Kalpurush
+                                                .copyWith(
+                                              color: AppColors.primaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'ইফতার: ',
+                                            style: TextFontStyle
+                                                .textLine12w500Kalpurush
+                                                .copyWith(
+                                              color: AppColors.primaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          Text(
+                                            formattedIftarTime,
+                                            style: TextFontStyle
+                                                .textLine12w500Kalpurush
+                                                .copyWith(
+                                              color: AppColors.primaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                              return SizedBox.shrink();
+                            },
+                          ),
+                          SizedBox(height: 10),
+                          StreamBuilder<HomePrayerTimeModel>(
+                            stream: getPrayerTimeRX.dataFetcher,
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -253,41 +277,46 @@ class _HomeScreenState extends State<HomeScreen> {
                               }
 
                               if (snapshot.hasData) {
-                                PrayerTimeModel prayerTimeModel =
+                                HomePrayerTimeModel prayerTimeModel =
                                     snapshot.data!;
-                                var time = prayerTimeModel.items!;
+                                var time = prayerTimeModel.data?.times;
 
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                log('Prayer times: ${time?.fajr}, ${time?.dhuhr}, ${time?.asr}, ${time?.maghrib}, ${time?.isha}');
+
+                                return Column(
                                   children: [
-                                    PrayerTimeWidget(
-                                      prayerName: "ফজর",
-                                      time: time[0].fajr ?? 'No time available',
-                                      icon: AppIcons.fajr,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        PrayerTimeWidget(
+                                          prayerName: "ফজর",
+                                          time: time?.fajr ?? '00:00',
+                                          icon: AppIcons.fajr,
+                                        ),
+                                        PrayerTimeWidget(
+                                          prayerName: "যোহর",
+                                          time: time?.dhuhr ?? '00:00',
+                                          icon: AppIcons.duhr,
+                                        ),
+                                        PrayerTimeWidget(
+                                          prayerName: "আসর",
+                                          time: time?.asr ?? '00:00',
+                                          icon: AppIcons.asr,
+                                        ),
+                                        PrayerTimeWidget(
+                                          prayerName: "মাগরিব",
+                                          time: time?.maghrib ?? '00:00',
+                                          icon: AppIcons.magrib,
+                                        ),
+                                        PrayerTimeWidget(
+                                          prayerName: "এশা",
+                                          time: time?.isha ?? '00:00',
+                                          icon: AppIcons.isha,
+                                        ),
+                                      ],
                                     ),
-                                    PrayerTimeWidget(
-                                      prayerName: "যোহর",
-                                      time:
-                                          time[0].dhuhr ?? 'No time available',
-                                      icon: AppIcons.duhr,
-                                    ),
-                                    PrayerTimeWidget(
-                                      prayerName: "আসর",
-                                      time: time[0].asr ?? 'No time available',
-                                      icon: AppIcons.asr,
-                                    ),
-                                    PrayerTimeWidget(
-                                      prayerName: "মাগরিব",
-                                      time: time[0].maghrib ??
-                                          'No time available',
-                                      icon: AppIcons.magrib,
-                                    ),
-                                    PrayerTimeWidget(
-                                      prayerName: "এশা",
-                                      time: time[0].isha ?? 'No time available',
-                                      icon: AppIcons.isha,
-                                    ),
+                                    SizedBox(height: 10),
                                   ],
                                 );
                               } else if (snapshot.hasError) {
@@ -310,22 +339,52 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  PrayerTimer(
-                    apiUrl:
-                        'https://api.aladhan.com/v1/timingsByAddress/${getCurrentDate()}?address=$selectedAddressEnglish&country=Bangladesh&method=1,',
-                    // 'https://api.aladhan.com/v1/timingsByCity?city=$selectedAddressEnglish&country=Bangladesh&method=2',
-                    city: selectedAddressEnglish,
-                    country: 'Bangladesh',
-                    method: 2,
-                    progressBarSize: 125.0,
-                    progressBarColor: AppColors.primaryColor,
-                    progressBarBackgroundColor: Colors.grey,
-                    fontColor: AppColors.primaryColor,
-                    fontName: 'Hind Siliguri',
-                    containerHeight: '220',
-                    date: getCurrentDate(),
-                    // Custom font color
-                  ),
+
+                  StreamBuilder<HomePrayerTimeModel>(
+                      stream: getPrayerTimeRX.dataFetcher,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Lottie.asset(
+                            AppLottie.whiteLottie,
+                            height: 80,
+                            width: 80,
+                          );
+                        }
+                        if (snapshot.hasData) {
+                          HomePrayerTimeModel prayerTimeModel = snapshot.data!;
+                          var time = prayerTimeModel.data?.times;
+
+                          log('Circular Prayer times: ${time?.fajr}, ${time?.dhuhr}, ${time?.asr}, ${time?.maghrib}, ${time?.isha}');
+
+                          return PrayerTimer(
+                            prayerTimesInput: {
+                              'Fajr': time?.fajr ?? '05:00',
+                              'Dhuhr': time?.dhuhr ?? '12:05',
+                              'Asr': time?.asr ?? '15:30',
+                              'Maghrib': time?.maghrib ?? '18:41',
+                              'Isha': time?.isha ?? '20:03',
+                            },
+                            progressBarSize: 130.0,
+                            progressBarColor: AppColors.primaryColor,
+                            progressBarBackgroundColor: Colors.grey,
+                            fontColor: Colors.black,
+                            containerHeight: '210',
+                          );
+                        } else if (snapshot.hasError) {
+                          return Lottie.asset(
+                            AppLottie.whiteLottie,
+                            height: 80,
+                            width: 80,
+                          );
+                        } else {
+                          return Lottie.asset(
+                            AppLottie.whiteLottie,
+                            height: 80,
+                            width: 80,
+                          );
+                        }
+                      }),
                   SizedBox(height: 20),
                   Row(
                     children: [
@@ -369,32 +428,39 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(width: 10),
                       Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  AppIcons.book,
-                                  height: 22,
-                                  width: 22,
-                                  color: AppColors.primaryColor,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "ইসলামিক গল্প",
-                                  style: TextFontStyle.textLine12w500Kalpurush
-                                      .copyWith(
+                        child: GestureDetector(
+                          onTap: () {
+                            NavigationService.navigateTo(
+                              Routes.islamicStoryScreen,
+                            );
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.book,
+                                    height: 22,
+                                    width: 22,
                                     color: AppColors.primaryColor,
-                                    fontSize: 16,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "ইসলামিক গল্প",
+                                    style: TextFontStyle.textLine12w500Kalpurush
+                                        .copyWith(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -551,6 +617,18 @@ class PrayerTimeWidget extends StatelessWidget {
     required this.icon,
   });
 
+  String _formatTime(String time) {
+    try {
+      // Assuming the input time is in "HH:mm" format (e.g., "07:45" or "19:45")
+      final DateTime parsedTime = DateFormat('HH:mm').parse(time);
+      // Format to "h:mm a" for AM/PM (e.g., "7:45 AM" or "7:45 PM")
+      return DateFormat('h:mm a').format(parsedTime);
+    } catch (e) {
+      // Return original time if parsing fails
+      return time;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -573,7 +651,7 @@ class PrayerTimeWidget extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-              time,
+              _formatTime(time), // Use formatted time
               style: TextFontStyle.smallStyle11w400Poppins.copyWith(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,

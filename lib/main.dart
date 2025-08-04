@@ -1,7 +1,6 @@
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:islamic_dunia/features/location_getting/location_getting.dart';
 import 'constants/custome_theme.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';
@@ -9,10 +8,11 @@ import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
 import 'loading_screen.dart';
 import 'networks/dio/dio.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  tz.initializeTimeZones();
   //await _requestPermissions();
   await GetStorage.init();
   diSetup();

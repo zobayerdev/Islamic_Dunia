@@ -77,6 +77,7 @@ class AppImages {
   static const String dailyduaImage = '$imageRoute/daily_dua.png';
   static const String playStoreImage = '$imageRoute/playstore.png';
   static const String islamic_app = '$imageRoute/islamic_app.png';
+  static const String qiblaImage = '$imageRoute/qiblaImage.png';
 
   // navigation bar images
 }

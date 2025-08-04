@@ -89,14 +89,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
               child: Center(
                 child: Column(
                   children: [
-                    Text(
-                      "'Let/s explore the Islamic world'",
-                      style: TextFontStyle.headLine22w500Poppins.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 20),
                     Container(
                       height: 200,
                       width: double.infinity,
@@ -105,15 +97,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         image: DecorationImage(
                           image: AssetImage(AppImages.explorebg),
                           fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(
-                            AppColors.primaryColor.withOpacity(0.9),
-                            BlendMode.darken,
-                          ),
+                          // colorFilter: ColorFilter.mode(
+                          //   AppColors.primaryColor.withOpacity(0.9),
+                          //   BlendMode.darken,
+                          // ),
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SvgPicture.asset(
                               AppIcons.quran,
@@ -122,22 +116,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               color: AppColors.white,
                             ),
                             Text(
-                              "Hadis of the day",
-                              style:
-                                  TextFontStyle.textStyle16w600Poppins.copyWith(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'قال رسول الله صلى الله عليه وسلم:" من لا يَفعَل الخير للناس فهو من أسوأ الناس عند الله."',
-                              style:
-                                  TextFontStyle.textStyle16w600Poppins.copyWith(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
+                              "এক্সপ্লোর করুন ইসলামিক দুনিয়াকে",
+                              style: TextFontStyle.textLine12w500Kalpurush
+                                  .copyWith(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24),
                             ),
                           ],
                         ),
@@ -234,7 +218,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              //NavigationService.navigateTo(Routes.surahScreen);
+                              NavigationService.navigateTo(Routes.makkaTracker);
                             },
                             child: Container(
                               height: 60,
@@ -247,14 +231,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SvgPicture.asset(
-                                      AppIcons.book,
-                                      height: 24,
-                                      width: 24,
+                                      AppIcons.qiblaSvg,
+                                      height: 32,
+                                      width: 32,
                                       color: AppColors.primaryColor,
                                     ),
                                     SizedBox(width: 10),
                                     Text(
-                                      "ইসলামিক বুক",
+                                      "মক্কা ট্রাকার",
                                       style: TextFontStyle
                                           .textLine12w500Kalpurush
                                           .copyWith(

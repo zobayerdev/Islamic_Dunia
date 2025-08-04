@@ -73,6 +73,14 @@ const String kKeyRestaurantID = 'productId';
 const String kKeyIsExploring = 'exploring';
 const String kKeySelectedAddress = 'selected_address';
 const String kKeySelectedAddressBengali = 'selected_address_bengali';
+
+// * location and otther's information
+const String kKeyLatitude = 'selected_latitude';
+const String kKeyLongitude = 'selected_longitude';
+const String kKeyTimeZone = 'selected_time_zone';
+const String kKeyTimeZoneArea = 'selected_time_zone_area';
+const String kKeyCalculation = 'selected_calculation';
+const String kKeySchool = 'selected_school';
 //order statuses
 
 const List<String> kLanguagesKey = [

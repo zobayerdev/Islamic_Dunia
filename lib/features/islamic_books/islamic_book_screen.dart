@@ -37,9 +37,9 @@ class _IslamicBookState extends State<IslamicBook> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'ইসলামিক বইসমূহ',
-                    style: TextStyle(
+                    style: TextFontStyle.textLine12w500Kalpurush.copyWith(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),

@@ -8,8 +8,10 @@ import 'package:islamic_dunia/features/explore/presentation/hadis/data/get_hadis
 import 'package:islamic_dunia/features/explore/presentation/hadis/widget/hadis_model.dart';
 import 'package:islamic_dunia/features/home/data/get_prayer_time_rx.dart';
 import 'package:islamic_dunia/features/home/data/get_ramjan_time_rx.dart';
-import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
 import 'package:islamic_dunia/features/home/model/ramjan_time_model.dart';
+import 'package:islamic_dunia/features/home/presentation/fasting_time/data/get_fasting_rx.dart';
+import 'package:islamic_dunia/features/home/presentation/fasting_time/model/fasting_model.dart';
+import 'package:islamic_dunia/features/home/presentation/prayertime/model/home_prayertime_model.dart';
 import 'package:islamic_dunia/features/islamic_books/data/get_books_rx.dart';
 import 'package:islamic_dunia/features/islamic_books/model/books_model.dart';
 import 'package:islamic_dunia/features/home/presentation/prayertime/data/monthly_prayer_rx.dart';
@@ -18,11 +20,18 @@ import 'package:islamic_dunia/features/explore/presentation/surah/data/get_surah
 import 'package:islamic_dunia/features/explore/presentation/surah/data/get_surah_rx.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/model/surah_details_model.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/model/surah_model.dart';
+import 'package:islamic_dunia/features/islamic_story/data/get_story_rx.dart';
+import 'package:islamic_dunia/features/islamic_story/model/story_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 GetPrayerTimeRX getPrayerTimeRX = GetPrayerTimeRX(
-  empty: PrayerTimeModel(),
-  dataFetcher: BehaviorSubject<PrayerTimeModel>(),
+  empty: HomePrayerTimeModel(),
+  dataFetcher: BehaviorSubject<HomePrayerTimeModel>(),
+);
+
+GetFastingRX getFastingRX = GetFastingRX(
+  empty: FastingModel(),
+  dataFetcher: BehaviorSubject<FastingModel>(),
 );
 
 GetMonthlyPrayerTimeRX getMonthlyPrayerTimeRX = GetMonthlyPrayerTimeRX(
@@ -68,4 +77,9 @@ GetDailyAyatAPIRX getDailyAyatAPIRX = GetDailyAyatAPIRX(
 GetBookRX getBookRX = GetBookRX(
   empty: BookModel(),
   dataFetcher: BehaviorSubject<BookModel>(),
+);
+
+GetStoryRX getStoryRX = GetStoryRX(
+  empty: StoryModel(),
+  dataFetcher: BehaviorSubject<StoryModel>(),
 );

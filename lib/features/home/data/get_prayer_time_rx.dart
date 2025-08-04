@@ -1,18 +1,24 @@
 import 'package:islamic_dunia/features/home/data/get_prayer_time_api.dart';
-import 'package:islamic_dunia/features/home/model/prayer_time_model.dart';
+import 'package:islamic_dunia/features/home/presentation/prayertime/model/home_prayertime_model.dart';
 import 'package:islamic_dunia/networks/rx_base.dart';
 import 'package:rxdart/rxdart.dart';
 
-final class GetPrayerTimeRX extends RxResponseInt<PrayerTimeModel> {
+final class GetPrayerTimeRX extends RxResponseInt<HomePrayerTimeModel> {
   final api = GetPrayerTimeApi.instance;
 
   GetPrayerTimeRX({required super.empty, required super.dataFetcher});
 
-  ValueStream<PrayerTimeModel> get horseissue => dataFetcher.stream;
+  ValueStream<HomePrayerTimeModel> get horseissue => dataFetcher.stream;
 
-  Future<void> prayerTimeAPI() async {
+  Future<void> prayerTimeAPI({
+    required dynamic lat,
+    required dynamic lng,
+    required dynamic method,
+    required dynamic school,
+  }) async {
     try {
-      PrayerTimeModel allData = await api.prayerTimeAPI();
+      HomePrayerTimeModel allData = await api.prayerTimeAPI(
+          lat: lat, lng: lng, method: method, school: school);
       handleSuccessWithReturn(allData);
     } catch (error) {
       handleErrorWithReturn(error);

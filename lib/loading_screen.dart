@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:islamic_dunia/features/location_getting/location_getting.dart';
 import 'package:islamic_dunia/navigation_screen.dart';
-import 'package:islamic_dunia/networks/api_acess.dart';
 import 'constants/app_constants.dart';
 
 import 'helpers/di.dart';
@@ -29,11 +27,7 @@ class _LoadingState extends State<Loading> {
   }
 
   loadInitialData() async {
-    //AutoAppUpdateUtil.instance.checkAppUpdate();
     await setInitValue();
-
-    await getPrayerTimeRX.prayerTimeAPI();
-    await getBookRX.bookAPI();
 
     if (appData.read(kKeyIsLoggedIn)) {
       String token = appData.read(kKeyAccessToken);
@@ -57,7 +51,7 @@ class _LoadingState extends State<Loading> {
           ? WelcomeScreen()
           : appData.read(kKeyIsExploring)
               ? NavigationScreen()
-              : DistrictSelector();
+              : LocationPrinterScreen();
     }
   }
 }
