@@ -45,5 +45,26 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Location Permissions -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Islamic Dunia needs access to your location to provide location-based features, such as prayer times and Qibla direction.</string>
+	<!-- Optional: Add these if your app needs background location access -->
+	<!--
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Islamic Dunia needs access to your location to provide continuous location updates, even when the app is in the background.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Islamic Dunia needs access to your location to provide continuous location updates, even when the app is in the background.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	-->
+	<!-- Local Network Permission for FlutterDartVMServicePublisher -->
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Islamic Dunia requires local network access to connect to the Flutter VM service for debugging and development purposes.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+	</array>
 </dict>
 </plist>
