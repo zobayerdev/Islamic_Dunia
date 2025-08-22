@@ -8,11 +8,15 @@ import 'package:geocoding/geocoding.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_images.dart';
+import 'package:islamic_dunia/assets_helper/app_lottie.dart';
+import 'package:islamic_dunia/common_widgets/custom_appbar.dart';
 import 'package:islamic_dunia/common_widgets/custom_button.dart';
 import 'package:islamic_dunia/constants/app_constants.dart';
 import 'package:islamic_dunia/helpers/all_routes.dart';
 import 'package:islamic_dunia/helpers/di.dart';
 import 'package:islamic_dunia/helpers/navigation_service.dart';
+import 'package:islamic_dunia/helpers/ui_helpers.dart';
+import 'package:lottie/lottie.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:http/http.dart' as http;
@@ -209,21 +213,32 @@ class _LocationPrinterScreenState extends State<LocationPrinterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('লোকেশন, ঠিকানা এবং টাইমজোন'),
+      backgroundColor: AppColors.cDCE4E6.withOpacity(0.9),
+      appBar: CustomAppBar(
+        title: 'লোকেশন, ঠিকানা এবং টাইমজোন',
+        leadingIconUnVisible: true,
       ),
       body: Center(
         child: isLoading
-            ? CircularProgressIndicator()
+            ? Lottie.asset(
+                AppLottie.whiteLottie,
+                height: 250,
+                width: 250,
+              )
             : SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(UIHelper.kDefaultPadding()),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        AppImages.islamic_app,
+                      Align(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          AppImages.bgImages,
+                          height: 150,
+                          width: 150,
+                        ),
                       ),
                       SizedBox(height: 8),
                       Text(
@@ -268,11 +283,15 @@ class _LocationPrinterScreenState extends State<LocationPrinterScreen> {
                           ),
                         ],
                       ),
-                      Text(
-                        'নামাযের সময় ক্যালকুলেশন',
-                        style: TextFontStyle.textLine12w500Kalpurush
-                            .copyWith(fontSize: 22),
-                        textAlign: TextAlign.center,
+                      UIHelper.verticalSpace(12),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'নামাযের সময় ক্যালকুলেশন',
+                          style: TextFontStyle.textLine12w500Kalpurush
+                              .copyWith(fontSize: 22),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       Text(
                         'আপনি আপনার প্রয়োজনীয় ক্যালকুলেশন পদ্ধতি এবং মাজহাব নির্বাচন করুন যেটা আপনার জন্য উপযুক্ত।',

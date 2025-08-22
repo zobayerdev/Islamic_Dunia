@@ -64,6 +64,9 @@ dependencies:
   ripple_wave: ^0.1.5
   timezone: ^0.10.1
   vector_math: ^2.1.4
+  device_preview: ^1.2.0
+  flutter_screenutil: ^5.9.3
+  auto_animated: ^3.2.0
 
 dev_dependencies:
   flutter_test:

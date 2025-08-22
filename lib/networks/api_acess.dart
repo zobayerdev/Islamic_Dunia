@@ -20,8 +20,8 @@ import 'package:islamic_dunia/features/explore/presentation/surah/data/get_surah
 import 'package:islamic_dunia/features/explore/presentation/surah/data/get_surah_rx.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/model/surah_details_model.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/model/surah_model.dart';
-import 'package:islamic_dunia/features/islamic_story/data/get_story_rx.dart';
-import 'package:islamic_dunia/features/islamic_story/model/story_model.dart';
+import 'package:islamic_dunia/features/home/presentation/islamic_story/data/get_story_rx.dart';
+import 'package:islamic_dunia/features/home/presentation/islamic_story/model/story_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 GetPrayerTimeRX getPrayerTimeRX = GetPrayerTimeRX(

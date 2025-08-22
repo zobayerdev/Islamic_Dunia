@@ -78,6 +78,8 @@ class AppImages {
   static const String playStoreImage = '$imageRoute/playstore.png';
   static const String islamic_app = '$imageRoute/islamic_app.png';
   static const String qiblaImage = '$imageRoute/qiblaImage.png';
+  static const String makka_compass = '$imageRoute/makka_compass.png';
+  static const String bgImages = '$imageRoute/bgImages.png';
 
   // navigation bar images
 }

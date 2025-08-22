@@ -30,7 +30,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "মাসিক নামাযের সময়",
+        title: "৩০ দিনের নামাযের সময়",
       ),
       body: Container(
         height: double.infinity,

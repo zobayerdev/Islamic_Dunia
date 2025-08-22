@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
+import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/common_widgets/custom_appbar.dart';
 import 'package:lottie/lottie.dart';
@@ -59,7 +60,9 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
   @override
   Widget build(BuildContext context) {
     log("========================> PDF URL: ${'https://islamicduniya.zobayerdev.top/' + widget.pdfURL}");
+
     return Scaffold(
+      backgroundColor: AppColors.cDCE4E6.withOpacity(0.9),
       appBar: CustomAppBar(
         title: 'বিস্তারিত দেখুন',
         isCenterd: true,

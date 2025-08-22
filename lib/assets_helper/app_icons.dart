@@ -51,5 +51,9 @@ class AppIcons {
 
   // * Settings Icons
   static const String refreshIcon = '$iconsRoute/refresh.svg';
-
+  static const String arrowNextIcon = '$iconsRoute/arrowNest.svg';
+  static const String locationIcon = '$iconsRoute/locationIcon.svg';
+  static const String feedbackIcon = '$iconsRoute/feedbackIcon.svg';
+  static const String privacyIcon = '$iconsRoute/privacyIcon.svg';
+  static const String locksIcon = '$iconsRoute/locksIcon.svg';
 }

@@ -1,80 +1,52 @@
-import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:islamic_dunia/assets_helper/app_colors.dart';
+import 'navigation_service.dart';
 
+/// Contains useful consts to reduce boilerplate and duplicate code
 final class UIHelper {
   UIHelper._();
+  // Vertical spacing constants. Adjust to your liking.
+  static final double _verticalSpaceSmall = 10.0.w;
+  static final double _verticalSpaceMedium = 20.0.w;
+  // ignore: unused_field
+  static final double _verticalSpaceMediumLarge = 25.0.w;
+  static final double _verticalSpaceSemiLarge = 40.0.w;
+  static final double _verticalSpaceLarge = 60.0.w;
+  static final double _verticalSpaceExtraLarge = 100.0.w;
 
-  // Helper functions to calculate dimensions dynamically using MediaQuery
-  static double _getWidth(BuildContext context, double fraction) {
-    return MediaQuery.of(context).size.width * fraction;
-  }
+  // Vertical spacing constants. Adjust to your liking.
+  static final double _horizontalSpaceSmall = 10.0.h;
+  static final double _horizontalSpaceMedium = 20.0.h;
+  static final double _horizontalSpaceSemiLarge = 40.0.h;
+  static final double _horizontalSpaceLarge = 60.0.h;
 
-  static double _getHeight(BuildContext context, double fraction) {
-    return MediaQuery.of(context).size.height * fraction;
-  }
+  static Widget verticalSpaceSmall = SizedBox(height: _verticalSpaceSmall);
+  static Widget verticalSpaceMedium = SizedBox(height: _verticalSpaceMedium);
+  static Widget verticalSpaceMediumLarge =
+      SizedBox(height: _verticalSpaceMediumLarge);
+  static Widget verticalSpaceSemiLarge =
+      SizedBox(height: _verticalSpaceSemiLarge);
+  static Widget verticalSpaceLarge = SizedBox(height: _verticalSpaceLarge);
+  static Widget verticalSpaceExtraLarge =
+      SizedBox(height: _verticalSpaceExtraLarge);
 
-  // Flexible horizontal and vertical spacing
-  static Widget horizontalSpace(BuildContext context, double fraction) =>
-      SizedBox(width: _getWidth(context, fraction));
-  static Widget verticalSpace(BuildContext context, double fraction) =>
-      SizedBox(height: _getHeight(context, fraction));
+  static Widget horizontalSpaceSmall = SizedBox(width: _horizontalSpaceSmall);
+  static Widget horizontalSpaceMedium = SizedBox(width: _horizontalSpaceMedium);
+  static Widget horizontalSpaceSemiLarge =
+      SizedBox(width: _horizontalSpaceSemiLarge);
+  static Widget horizontalSpaceLarge = SizedBox(width: _horizontalSpaceLarge);
 
-  // Customizable sizes
-  static double borderRadius(BuildContext context, double fraction) =>
-      _getWidth(context, fraction);
+  static Widget horizontalSpace(double width) => SizedBox(width: width);
+  static Widget verticalSpace(double height) => SizedBox(height: height);
 
-  static double iconSize(BuildContext context, double fraction) =>
-      _getWidth(context, fraction);
+  static double safePadding() =>
+      MediaQuery.of(NavigationService.context).padding.top;
 
-  static double fontSize(BuildContext context, double fraction) =>
-      _getWidth(context, fraction);
-
-  // Example pre-defined sizes
-  static double smallBorderRadius(BuildContext context) =>
-      borderRadius(context, 0.02); // 2% of screen width
-  static double mediumBorderRadius(BuildContext context) =>
-      borderRadius(context, 0.04); // 4% of screen width
-  static double largeBorderRadius(BuildContext context) =>
-      borderRadius(context, 0.08); // 8% of screen width
-
-  static double smallIconSize(BuildContext context) =>
-      iconSize(context, 0.05); // 5% of screen width
-  static double mediumIconSize(BuildContext context) =>
-      iconSize(context, 0.08); // 8% of screen width
-  static double largeIconSize(BuildContext context) =>
-      iconSize(context, 0.12); // 12% of screen width
-
-  static double smallFontSize(BuildContext context) =>
-      fontSize(context, 0.03); // 3% of screen width
-  static double mediumFontSize(BuildContext context) =>
-      fontSize(context, 0.05); // 5% of screen width
-  static double largeFontSize(BuildContext context) =>
-      fontSize(context, 0.07); // 7% of screen width
-
-  // Padding and margin
-  static EdgeInsets defaultPadding(BuildContext context) =>
-      EdgeInsets.all(_getWidth(context, 0.05)); // 5% of screen width
-
-  static EdgeInsets symmetricPadding(BuildContext context,
-          double verticalFraction, double horizontalFraction) =>
-      EdgeInsets.symmetric(
-        vertical: _getHeight(context, verticalFraction),
-        horizontal: _getWidth(context, horizontalFraction),
-      );
-
-  static EdgeInsets onlyPadding(BuildContext context,
-          {double? top, double? bottom, double? left, double? right}) =>
-      EdgeInsets.only(
-        top: top != null ? _getHeight(context, top) : 0,
-        bottom: bottom != null ? _getHeight(context, bottom) : 0,
-        left: left != null ? _getWidth(context, left) : 0,
-        right: right != null ? _getWidth(context, right) : 0,
-      );
-
-  //Divider
-  static Widget customDivider(BuildContext context) => Container(
-        height: 0.006 * MediaQuery.of(context).size.height, // 0.6% of height
+  static Widget customDivider() => Container(
+        height: .6.h,
         color: AppColors.c444444,
         width: double.infinity,
       );
+  static double kDefaultPadding() => 20.sp;
 }

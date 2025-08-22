@@ -238,9 +238,9 @@ class _QiblaCompassScreenState extends State<QiblaCompassScreen> {
                                         angle: vmath.radians(
                                             (_qiblaDirection! - direction)),
                                         child: Image.asset(
-                                          AppImages.qiblaImage,
-                                          height: 300,
-                                          width: 300,
+                                          AppImages.makka_compass,
+                                          height: 250,
+                                          width: 250,
                                         ),
                                       ),
                                     ],

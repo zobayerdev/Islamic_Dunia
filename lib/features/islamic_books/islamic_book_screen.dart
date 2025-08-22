@@ -3,10 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_dunia/assets_helper/app_colors.dart';
 import 'package:islamic_dunia/assets_helper/app_fonts.dart';
 import 'package:islamic_dunia/assets_helper/app_icons.dart';
+import 'package:islamic_dunia/assets_helper/app_lottie.dart';
 import 'package:islamic_dunia/features/islamic_books/model/books_model.dart';
 import 'package:islamic_dunia/helpers/all_routes.dart';
 import 'package:islamic_dunia/helpers/navigation_service.dart';
 import 'package:islamic_dunia/networks/api_acess.dart';
+import 'package:lottie/lottie.dart';
 
 class IslamicBook extends StatefulWidget {
   const IslamicBook({super.key});
@@ -50,8 +52,12 @@ class _IslamicBookState extends State<IslamicBook> {
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting ||
                           !snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
+                        return Center(
+                          child: Lottie.asset(
+                            AppLottie.whiteLottie,
+                            height: 250,
+                            width: 250,
+                          ),
                         );
                       }
                       var books = snapshot.data?.islamicBooks ?? [];

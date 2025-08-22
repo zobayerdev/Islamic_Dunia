@@ -8,13 +8,14 @@ import 'package:islamic_dunia/features/explore/presentation/dua/presentation/dua
 import 'package:islamic_dunia/features/explore/presentation/hadis/presentation/hadis_screen.dart';
 import 'package:islamic_dunia/features/islamic_books/books_view_screen.dart';
 import 'package:islamic_dunia/features/home/presentation/prayertime/presentation/prayer_time_screen.dart';
-import 'package:islamic_dunia/features/islamic_story/presentation/story_screen.dart';
-import 'package:islamic_dunia/features/islamic_story/presentation/story_view_screen.dart';
-import 'package:islamic_dunia/features/quran_pdf/quran_pdf_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/islamic_story/presentation/story_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/islamic_story/presentation/story_view_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/quran_pdf/quran_pdf_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/ramadan/presentation/ramadan_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/details_surah_screen.dart';
 import 'package:islamic_dunia/features/explore/presentation/surah/presentatioon/surah_screen.dart';
-import 'package:islamic_dunia/features/explore/presentation/tashbih/tasbih_screen.dart';
+import 'package:islamic_dunia/features/home/presentation/tashbih/tasbih_screen.dart';
+import 'package:islamic_dunia/features/setting/time_correction_screen.dart';
 import 'package:islamic_dunia/navigation_screen.dart';
 
 final class Routes {
@@ -41,6 +42,7 @@ final class Routes {
   static const String islamicStoryScreen = '/islamicStoryScreen';
   static const String islamicStoryViewScreen = '/islamicStoryViewScreen';
   static const String makkaTracker = '/makkaTracker';
+  static const String timeCorrectionScreen = '/timeCorrectionScreen';
 }
 
 final class RouteGenerator {
@@ -192,6 +194,13 @@ final class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: QiblaCompassScreen(), settings: settings)
             : CupertinoPageRoute(builder: (context) => QiblaCompassScreen());
+
+      // * Time Correction
+      case Routes.timeCorrectionScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: TimeCorrectionScreen(), settings: settings)
+            : CupertinoPageRoute(builder: (context) => TimeCorrectionScreen());
 
       default:
         return null;
